@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="0dp"
+    android:padding="0dp">
+
+    <RelativeLayout
+        android:id="@+id/scoreAdvanceTable"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.6">
+
+        <TextView
+            android:id="@+id/label6"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_alignParentTop="true"
+            android:gravity="center"
+            android:text="*SCORE ADVANCE TABLE*"
+            android:textAppearance="@style/TextStyle" />
+
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:padding="8dp"
+            android:columnCount="2"
+            android:rowCount="4">
+
+            <ImageView
+                android:id="@+id/image2"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@mipmap/mystery_ship" />
+
+            <TextView
+                android:id="@+id/label2"
+                android:layout_height="32dp"
+                android:gravity="center"
+                android:text="= ? MYSTERY"
+                android:textAppearance="@style/TextStyle" />
+
+            <ImageView
+                android:id="@+id/image3"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:padding="4dp"
+                android:src="@mipmap/alien_alpha_2" />
+
+            <TextView
+                android:id="@+id/label3"
+                android:layout_height="32dp"
+                android:gravity="center"
+                android:text="= 30 POINTS"
+                android:textAppearance="@style/TextStyle" />
+
+            <ImageView
+                android:id="@+id/image4"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:padding="4dp"
+                android:src="@mipmap/alien_beta_2" />
+
+            <TextView
+                android:id="@+id/label4"
+                android:layout_height="32dp"
+                android:gravity="center"
+                android:text="= 20 POINTS"
+                android:textAppearance="@style/TextStyle" />
+
+            <ImageView
+                android:id="@+id/image5"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:padding="4dp"
+                android:src="@mipmap/alien_alpha_2" />
+
+            <TextView
+                android:id="@+id/label5"
+                android:layout_height="32dp"
+                android:gravity="center"
+                android:text="= 10 POINTS"
+                android:textAppearance="@style/TextStyle" />
+
+        </GridLayout>
+
+        <TextView
+            android:id="@+id/label1"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:text="PRESS FIRE TO START"
+            android:textAppearance="@style/TextStyle" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="162dp"
+        android:adjustViewBounds="true"
+        android:fontFamily="@font/roboto_bold"
+        android:gravity="center"
+        android:maxHeight="162dp"
+        android:padding="8dp"
+        android:src="@drawable/space_invaders_logo"
+        app:layout_constraintBottom_toTopOf="@+id/scoreAdvanceTable"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.75" />
+
+</android.support.constraint.ConstraintLayout>

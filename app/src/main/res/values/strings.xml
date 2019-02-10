@@ -1,0 +1,5 @@
+<resources>
+  <string name="app_name">Space Invaders</string>
+  <string name="place_holder_initial_score">0000</string>
+    <string name="paused">Paused</string>
+</resources>

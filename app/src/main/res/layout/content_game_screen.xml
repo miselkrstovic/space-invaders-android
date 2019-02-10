@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/earth" />
+
+    <com.github.spaceinvaders.engine.Engine
+        android:id="@+id/pnlGameEngine"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <SurfaceView
+        android:id="@+id/bvlGround"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_alignTop="@id/jvGradient1"/>
+
+    <View
+        android:id="@+id/jvGradient1"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_alignTop="@id/pnlLivesBar"/>
+
+    <LinearLayout
+        android:id="@+id/pnlLivesBar"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:id="@+id/lblPlayerLives"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:text="5"
+            android:textAlignment="textStart"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:id="@+id/imgPlayerLive1"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_margin="4dp"
+            android:src="@mipmap/laser_cannon_small_blue"/>
+
+        <ImageView
+            android:id="@+id/imgPlayerLive2"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_margin="4dp"
+            android:src="@mipmap/laser_cannon_small_blue"/>
+
+        <ImageView
+            android:id="@+id/imgPlayerLive3"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_margin="4dp"
+            android:src="@mipmap/laser_cannon_small_blue"/>
+
+        <ImageView
+            android:id="@+id/imgPlayerLive4"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_margin="4dp"
+            android:src="@mipmap/laser_cannon_small_blue"/>
+
+        <ImageView
+            android:id="@+id/imgPlayerLive5"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_margin="4dp"
+            android:src="@mipmap/laser_cannon_small_blue"/>
+
+    </LinearLayout>
+</RelativeLayout>
