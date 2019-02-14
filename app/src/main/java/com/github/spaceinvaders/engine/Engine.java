@@ -500,8 +500,8 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
             } else {
                 if (_flipFlop) {
                     String str = getResources().getString(R.string.paused).toUpperCase();
-                    int strSize = 256; // TODO: Get actual string width
-                    int x = (CanvasHelper.getWidth() - strSize) / 2;
+                    int strWidth = CanvasHelper.getTextBounds(str).width();
+                    int x = (CanvasHelper.getWidth() - strWidth) / 2;
                     int y = 0;
                     CanvasHelper.drawText(str, x, y);
                 }

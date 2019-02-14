@@ -22,8 +22,12 @@ public class Utilities {
     private static final String dirDelimiter = "/";
 
     public static void beep() {
-        ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
-        toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 200);
+        try {
+            ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
+            toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 200);
+        } catch (Exception e) {
+            // Gotcha!
+        }
     }
 
     public static void playSoundW(Context context, String filename, boolean loop) throws IOException {
@@ -33,16 +37,20 @@ public class Utilities {
         player.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(),
                 afd.getLength());
         player.prepareAsync();
+        player.setLooping(loop);
         player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-
             @Override
             public void onCompletion(MediaPlayer mp) {
                 mp.release();
             }
 
         });
-        player.setLooping(loop);
-        player.start();
+        player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                player.start();
+            }
+        });
     }
 
     public static void playWave(SoundFile soundName) {
@@ -50,19 +58,17 @@ public class Utilities {
     }
 
     public static void playWave(SoundFile soundName, boolean looping) {
-// TODO:
-//        String filename;
-//        try {
-//            Context context = MainApplication.getContext();
-//            filename = soundName.toString() + ".wav";
-//            if (looping) {
-//                playSoundW(context, filename, true);
-//            } else {
-//                playSoundW(context, filename, false);
-//            }
-//        } catch (Exception ex) {
-//            beep(); // fallback
-//        }
+        try {
+            Context context = MainApplication.getContext();
+            String filename = soundName.toString() + ".wav";
+            if (looping) {
+                playSoundW(context, filename, true);
+            } else {
+                playSoundW(context, filename, false);
+            }
+        } catch (Exception ex) {
+            beep(); // fallback
+        }
     }
 
 

@@ -80,7 +80,7 @@ public class MysteryShip extends Model implements Freeable {
                         break;
                 }
             }
-            Utilities.playWave(SoundFile.MYSTERY_SHIP_CRUISE, true);
+// TODO:            Utilities.playWave(SoundFile.MYSTERY_SHIP_CRUISE, true);
             _mysteryShipEnabled = true;
         } else {
             switch (_direction) {
