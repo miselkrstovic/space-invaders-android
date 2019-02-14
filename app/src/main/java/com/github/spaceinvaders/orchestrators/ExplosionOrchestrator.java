@@ -54,7 +54,7 @@ public class ExplosionOrchestrator implements Freeable {
     }
 
     public void takeOutTheTrash() {
-        for (int i =_explosionObjectList.size() - 1; i == 0; i--) {
+        for (int i = _explosionObjectList.size() - 1; i >= 0; i--) {
             if (_explosionObjectList.get(i).isGarbage()) {
                 _explosionObjectList.remove(i);
             }

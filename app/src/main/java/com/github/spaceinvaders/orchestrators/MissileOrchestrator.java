@@ -83,13 +83,13 @@ public class MissileOrchestrator implements Freeable {
     }
 
     public void takeOutTheTrash() {
-        for (int i = (_alienObjectList.size() - 1); i >= 0; i--) {
+        for (int i = _alienObjectList.size() - 1; i >= 0; i--) {
             if (_alienObjectList.get(i).isGarbage()) {
                 _alienObjectList.remove(i);
             }
         }
 
-        for (int i = (_playerObjectList.size()) - 1; i >= 0; i--) {
+        for (int i = _playerObjectList.size() - 1; i >= 0; i--) {
             if (_playerObjectList.get(i).isGarbage()) {
                 _playerObjectList.remove(i);
             }

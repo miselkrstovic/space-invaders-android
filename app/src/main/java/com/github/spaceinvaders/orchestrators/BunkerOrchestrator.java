@@ -17,6 +17,8 @@ public class BunkerOrchestrator implements Freeable {
     private List<Bunker> _map;
     private ExplosionOrchestrator _explosionOrchestrator;
 
+    private boolean _initialized = false;
+
     public BunkerOrchestrator() {
         _map = new ArrayList<>(BUNKER_COUNT);
         _map.add(null);
@@ -26,7 +28,7 @@ public class BunkerOrchestrator implements Freeable {
     }
 
     public void free() {
-        for (int i = 0; i <= _map.size() - 1; i++) {
+        for (int i = 0; i < _map.size(); i++) {
             if (_map.get(i) != null) {
                 _map.set(i, null);
             }
@@ -38,9 +40,13 @@ public class BunkerOrchestrator implements Freeable {
     }
 
     public void init() {
+        // Deferred to lazy initialization to get proper canvas values
+    }
+
+    private void lazyInit() {
         int segment = Utilities.floorDiv(CanvasHelper.getWidth(), BUNKER_COUNT);
 
-        for (int x = 0; x <= _map.size() - 1; x++) {
+        for (int x = 0; x < _map.size(); x++) {
             if (_map.get(x) != null) {
                 Bunker bunker = _map.get(x); // We are reusing the previous bunker object
                 bunker.getPicture().setPenColor(Utilities.setAlpha(Color.WHITE, 0xFF));
@@ -51,13 +57,17 @@ public class BunkerOrchestrator implements Freeable {
                 _map.set(x, bunker);
             }
 
-            _map.get(x).setLeft(Utilities.floorDiv((segment - _map.get(x).getWidth()), 2)+segment * (x - 1));
+            _map.get(x).setLeft(Utilities.floorDiv((segment - _map.get(x).getWidth()), 2) + segment * x);
             _map.get(x).setTop(Utilities.floorDiv(CanvasHelper.getHeight() * 69, 100));
         }
+
+        _initialized = true;
     }
 
     public void doPaint() {
-        for (int i = 0; i <= _map.size() - 1; i++) {
+        if (!_initialized) lazyInit();
+
+        for (int i = 0; i < _map.size() ; i++) {
             if (_map.get(i) != null) {
                 _map.get(i).doPaint();
             }
