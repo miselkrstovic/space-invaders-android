@@ -67,10 +67,10 @@
         android:layout_toEndOf="@+id/vpLEDLabel1"
         android:layout_toStartOf="@+id/vpLEDLabel2"
         android:background="@android:color/transparent"
-        android:gravity="center_horizontal|bottom"
+        android:gravity="center_horizontal|center_vertical"
         android:text="@string/place_holder_initial_score"
         android:textAppearance="@style/TextStyle"
-        android:textSize="32sp" />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/vpLEDLabel1"
