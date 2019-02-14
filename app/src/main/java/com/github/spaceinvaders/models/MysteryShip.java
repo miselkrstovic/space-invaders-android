@@ -16,7 +16,7 @@ public class MysteryShip extends Model implements Freeable {
     private MysteryShipDirection _direction = LEFT;
     private int _mysteryShipCount;
     private boolean _mysteryShipEnabled;
-    private int _mysteryShipThreshold;
+    private final int _mysteryShipThreshold;
 
     private Bitmap32 _picture;
 
@@ -26,7 +26,7 @@ public class MysteryShip extends Model implements Freeable {
         _picture.setDrawMode(Bitmap32.DrawMode.BLEND);
         setTop(8);
 
-        _mysteryShipThreshold = 1000 / GameSettings.FPS * GameSettings.MYSTERY_SHIP_FREQUENCY;
+        _mysteryShipThreshold = 1_000 / GameSettings.FPS * GameSettings.MYSTERY_SHIP_FREQUENCY;
     }
 
     public void free() {
@@ -79,9 +79,9 @@ public class MysteryShip extends Model implements Freeable {
                         setLeft(-1 * getWidth());
                         break;
                 }
+                Utilities.playWave(SoundFile.MYSTERY_SHIP_CRUISE, true);
+                _mysteryShipEnabled = true;
             }
-// TODO:            Utilities.playWave(SoundFile.MYSTERY_SHIP_CRUISE, true);
-            _mysteryShipEnabled = true;
         } else {
             switch (_direction) {
                 case LEFT:
