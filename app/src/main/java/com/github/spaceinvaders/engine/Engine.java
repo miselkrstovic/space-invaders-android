@@ -629,8 +629,8 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
         Explosion explosion;
 
         // Check missile/missile collision
-        for (int i = missileOrchestrator.getAlienObjects().size() - 1; i == 0; i--) {
-            for (int j = missileOrchestrator.getPlayerObjects().size() - 1; j == 0; j--) {
+        for (int i = missileOrchestrator.getAlienObjects().size() - 1; i >= 0; i--) {
+            for (int j = missileOrchestrator.getPlayerObjects().size() - 1; j >= 0; j--) {
                 if (Utilities.overlaps(
                         missileOrchestrator.getAlienObjects().get(i).getBoundsRect(),
                         missileOrchestrator.getPlayerObjects().get(j).getBoundsRect()
@@ -657,7 +657,7 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
 
         // Check missile/mystery-ship collision
         if (_mysteryShip.isShowing()) {
-            for (int i = missileOrchestrator.getPlayerObjects().size() - 1; i == 0; i--) {
+            for (int i = missileOrchestrator.getPlayerObjects().size() - 1; i >= 0; i--) {
                 if (Utilities.overlaps(
                         missileOrchestrator.getPlayerObjects().get(i).getBoundsRect(),
                         _mysteryShip.getBoundsRect()
@@ -718,7 +718,7 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
         Explosion explosion;
 
         // Check laser-missile/bunker collision
-        for (int i = missileOrchestrator.getPlayerObjects().size() - 1; i == 0; i--) {
+        for (int i = missileOrchestrator.getPlayerObjects().size() - 1; i >= 0; i--) {
             for (int j = 1; j < bunkerOrchestrator.getMap().size(); j++) {
                 if (Utilities.overlaps(
                         missileOrchestrator.getPlayerObjects().get(i).getBoundsRect(),
