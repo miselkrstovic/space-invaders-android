@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.ToneGenerator;
+import android.support.annotation.ColorInt;
 
 import com.github.spaceinvaders.MainApplication;
 import com.github.spaceinvaders.compatibility.Point32;
@@ -153,7 +154,7 @@ public class Utilities {
         return (int) (x / y);
     }
 
-    public static int setAlpha(int col, int alpha) {
+    public static int setAlpha(@ColorInt int col, int alpha) {
         return Color.argb(
                 alpha,
                 Color.red(col),

@@ -101,17 +101,18 @@ public class Bitmap32 extends Rect32 implements Freeable {
 
     public void setFillRect(int top, int left, int right, int bottom, @ColorInt int col) {
         Canvas32 canvas = CanvasHelper.createCanvas(_bitmap);
-        Paint paint1 = createPaint();
-        paint1.setColor(col);
-        paint1.setStyle(Paint.Style.FILL);
-        canvas.drawRect(left, top, right, bottom, paint1);
+        Paint paint = createPaint();
+        paint.setColor(col);
+        paint.setStyle(Paint.Style.FILL);
+        canvas.drawRect(left, top, right, bottom, paint);
     }
 
     public void setFrameRectS(Rect32 boundsRect, @ColorInt int col) {
         Canvas32 canvas = CanvasHelper.createCanvas(_bitmap);
-        Paint paint1 = createPaint();
-        paint1.setColor(col);
-        canvas.drawRect(boundsRect.getLeft(), boundsRect.getTop(), boundsRect.getRight(), boundsRect.getBottom(), paint1);
+        Paint paint = createPaint();
+        paint.setColor(col);
+        paint.setStyle(Paint.Style.STROKE);
+        canvas.drawRect(boundsRect.getLeft(), boundsRect.getTop(), boundsRect.getRight(), boundsRect.getBottom(), paint);
     }
 
     public Bitmap getBitmap() {

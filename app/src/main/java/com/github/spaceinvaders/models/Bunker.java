@@ -30,6 +30,7 @@ public class Bunker extends Model {
         _picture.setWidth(BUNKER_WIDTH);
         _picture.setHeight(BUNKER_HEIGHT);
         _picture.setMasterAlpha(0xFF);
+        _picture.setPenColor(0xFFFFFF);
         _picture.setDrawMode(Bitmap32.DrawMode.BLEND);
         _picture.setFillRect(0, 0, _picture.getWidth(), _picture.getHeight(), 0xFFFFFF);
 
@@ -48,7 +49,7 @@ public class Bunker extends Model {
     public void doPaint() {
         CanvasHelper.drawRect(getBoundsRect(), CanvasHelper.createPaint());
 
-//        CanvasHelper.drawBitmap(_picture.getBitmap(), getLeft(), getTop());
+// TODO:        CanvasHelper.drawBitmap(_picture.getBitmap(), getLeft(), getTop());
     }
 
     private boolean isValidSlotIndex(int value) {

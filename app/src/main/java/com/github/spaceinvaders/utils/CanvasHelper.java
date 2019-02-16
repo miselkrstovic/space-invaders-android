@@ -85,4 +85,5 @@ public class CanvasHelper {
         paint.setStyle(Paint.Style.FILL);
         return paint;
     }
+
 }
