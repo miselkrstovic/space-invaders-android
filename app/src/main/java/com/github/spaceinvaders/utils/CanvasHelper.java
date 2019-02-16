@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
+import com.github.spaceinvaders.compatibility.Canvas32;
 import com.github.spaceinvaders.compatibility.Rect32;
 import com.github.spaceinvaders.engine.Engine;
 
@@ -63,9 +64,7 @@ public class CanvasHelper {
     }
 
     public static void drawText(String str, int x, int y) {
-        Paint paint = new Paint();
-        paint.setColor(Color.WHITE);
-        getCanvas().drawText(str, x, y, paint);
+        getCanvas().drawText(str, x, y, createPaint());
     }
 
     private static Rect textBounds = new Rect();
@@ -74,5 +73,16 @@ public class CanvasHelper {
     public static Rect getTextBounds(String text) {
         textPaint.getTextBounds(text, 0, text.length(), textBounds);
         return textBounds;
+    }
+
+    public static Canvas32 createCanvas(Bitmap bitmap) {
+        return new Canvas32(bitmap);
+    }
+
+    public static Paint createPaint() {
+        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint.setColor(Color.WHITE);
+        paint.setStyle(Paint.Style.FILL);
+        return paint;
     }
 }

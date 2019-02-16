@@ -53,14 +53,12 @@ public class Missile extends Model {
         _drawing = true;
         try {
             Rect32 boundsRect = getBoundsRect();
-            Paint paint1 = new Paint();
-            paint1.setColor(Color.WHITE);
             CanvasHelper.drawRect(
                     boundsRect.getLeft(),
                     boundsRect.getTop(),
                     boundsRect.getRight(),
                     boundsRect.getBottom(),
-                    paint1
+                    CanvasHelper.createPaint()
             );
         } finally {
             _drawing = save;
@@ -73,40 +71,40 @@ public class Missile extends Model {
             case PLAYER:
                 setTop(getTop() - GameSettings.PLAYER_MISSILE_PIXEL_SHIFT);
                 if (getTop()<=0) {
-                if (_explosionOrchestrator!=null){
-                    explosion = new Explosion(SKY, _explosionOrchestrator);
-                    explosion.setLeft(Utilities.spriteCenter(
-                            getWidth(),
-                            explosion.getWidth(),
-                            getLeft()
-                    ));
-                    explosion.setTop(Utilities.spriteTopAlign(getHeight(), explosion.getHeight(), getTop()));
-                    _explosionOrchestrator.addExplosion(explosion);
-                }
+                    if (_explosionOrchestrator!=null){
+                        explosion = new Explosion(SKY, _explosionOrchestrator);
+                        explosion.setLeft(Utilities.spriteCenter(
+                                getWidth(),
+                                explosion.getWidth(),
+                                getLeft()
+                        ));
+                        explosion.setTop(Utilities.spriteTopAlign(getHeight(), explosion.getHeight(), getTop()));
+                        _explosionOrchestrator.addExplosion(explosion);
+                    }
 
-                setTop(0);
-                garbage();
-            }
-            break;
+                    setTop(0);
+                    garbage();
+                }
+                break;
             case ALIEN:
                 setTop(getTop() + GameSettings.ALIEN_MISSILE_PIXEL_SHIFT);
                 if (getTop()>=(CanvasHelper.getHeight() - 48)) {
-                if (_explosionOrchestrator!=null){
-                    explosion = new Explosion(GROUND, _explosionOrchestrator);
-                    explosion.setLeft(Utilities.spriteCenter(
-                            getWidth(),
-                            explosion.getWidth(),
-                            getLeft()
-                    ));
-                    explosion.setTop(Utilities.spriteBottomAlign(getHeight(), explosion.getHeight(), getTop()));
-                    _explosionOrchestrator.addExplosion(explosion);
-                }
+                    if (_explosionOrchestrator!=null){
+                        explosion = new Explosion(GROUND, _explosionOrchestrator);
+                        explosion.setLeft(Utilities.spriteCenter(
+                                getWidth(),
+                                explosion.getWidth(),
+                                getLeft()
+                        ));
+                        explosion.setTop(Utilities.spriteBottomAlign(getHeight(), explosion.getHeight(), getTop()));
+                        _explosionOrchestrator.addExplosion(explosion);
+                    }
 
-                setTop(CanvasHelper.getHeight() - 48);
-                garbage();
-                _missileOrchestrator.registerHole(getLeft());
-            }
-            break;
+                    setTop(CanvasHelper.getHeight() - 48);
+                    garbage();
+                    _missileOrchestrator.registerHole(getLeft());
+                }
+                break;
         }
     }
 

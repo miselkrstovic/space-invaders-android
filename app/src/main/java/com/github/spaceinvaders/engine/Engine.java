@@ -16,6 +16,7 @@ import android.view.SurfaceView;
 import com.github.spaceinvaders.GameSettings;
 import com.github.spaceinvaders.R;
 import com.github.spaceinvaders.compatibility.Bitmap32;
+import com.github.spaceinvaders.compatibility.Canvas32;
 import com.github.spaceinvaders.compatibility.Point32;
 import com.github.spaceinvaders.enums.ExplosionType;
 import com.github.spaceinvaders.enums.GameState;
@@ -160,7 +161,7 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
         if (_canvas != null) {
             return _canvas;
         } else {
-            return new Canvas(); // TODO: Bad patch!!!
+            return new Canvas32(); // TODO: Bad patch!!!
         }
     }
 

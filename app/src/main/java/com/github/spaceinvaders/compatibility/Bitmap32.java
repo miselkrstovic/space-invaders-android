@@ -3,11 +3,12 @@ package com.github.spaceinvaders.compatibility;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.support.annotation.ColorInt;
 
 import com.github.spaceinvaders.MainApplication;
 import com.github.spaceinvaders.engine.Freeable;
+import com.github.spaceinvaders.utils.CanvasHelper;
 
 public class Bitmap32 extends Rect32 implements Freeable {
 
@@ -18,10 +19,8 @@ public class Bitmap32 extends Rect32 implements Freeable {
     private int defaultColor;
     private int defaultAlpha;
 
-    private Paint _paint;
     private Bitmap _bitmap;
     private DrawMode _mode;
-    private Canvas _canvas;
 
     public Bitmap32() {
         setup();
@@ -39,9 +38,6 @@ public class Bitmap32 extends Rect32 implements Freeable {
     private void setup() {
         Bitmap.Config conf = Bitmap.Config.ARGB_8888; // see other conf types
         _bitmap = Bitmap.createBitmap(256, 256, conf); // this creates a MUTABLE bitmap
-        _canvas = new Canvas(_bitmap);
-
-        _paint = new Paint();
     }
 
     @Override
@@ -54,10 +50,10 @@ public class Bitmap32 extends Rect32 implements Freeable {
         );
     }
     private Paint createPaint() {
-        Paint p = new Paint(Paint.ANTI_ALIAS_FLAG);
-        p.setColor(defaultColor);
-        p.setAlpha(defaultAlpha);
-        return p;
+        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint.setColor(defaultColor);
+        paint.setAlpha(defaultAlpha);
+        return paint;
     }
 
     public void free() {
@@ -79,8 +75,8 @@ public class Bitmap32 extends Rect32 implements Freeable {
     }
 
     public void draw(int left, int top, Bitmap32 picture) {
-        Canvas canvas = new Canvas(_bitmap);
-        canvas.drawBitmap(picture.getBitmap(), left, top, _paint);
+        Canvas32 canvas = CanvasHelper.createCanvas(_bitmap);
+        canvas.drawBitmap(picture.getBitmap(), left, top, createPaint());
     }
 
     public void setDrawMode(DrawMode mode) {
@@ -97,23 +93,22 @@ public class Bitmap32 extends Rect32 implements Freeable {
 
     public void setMasterAlpha(int alpha) {
         defaultAlpha = alpha;
-        _paint.setAlpha(alpha);
     }
 
-    public void setPenColor(int penColor) {
-        _paint.setColor(penColor);
+    public void setPenColor(@ColorInt int penColor) {
+        defaultColor = penColor;
     }
 
-    public void setFillRect(int top, int left, int right, int bottom, int col) {
-        Canvas canvas = new Canvas(_bitmap);
+    public void setFillRect(int top, int left, int right, int bottom, @ColorInt int col) {
+        Canvas32 canvas = CanvasHelper.createCanvas(_bitmap);
         Paint paint1 = createPaint();
         paint1.setColor(col);
         paint1.setStyle(Paint.Style.FILL);
         canvas.drawRect(left, top, right, bottom, paint1);
     }
 
-    public void setFrameRectS(Rect32 boundsRect, int col) {
-        Canvas canvas = new Canvas(_bitmap);
+    public void setFrameRectS(Rect32 boundsRect, @ColorInt int col) {
+        Canvas32 canvas = CanvasHelper.createCanvas(_bitmap);
         Paint paint1 = createPaint();
         paint1.setColor(col);
         canvas.drawRect(boundsRect.getLeft(), boundsRect.getTop(), boundsRect.getRight(), boundsRect.getBottom(), paint1);

@@ -162,6 +162,10 @@ public class Utilities {
         );
     }
 
+    public static int pxToDp(float px) {
+        return (int) (px * getDisplayDensity());
+    }
+
     public static int pxToDp(int px) {
         return (int) (px * getDisplayDensity());
     }

@@ -22,6 +22,7 @@ import com.github.spaceinvaders.engine.Engine;
 import com.github.spaceinvaders.engine.EngineListener;
 import com.github.spaceinvaders.engine.ScoreKeeper;
 import com.github.spaceinvaders.engine.ScoreKeeperListener;
+import com.github.spaceinvaders.utils.CanvasHelper;
 import com.jmedeisis.bugstick.Joystick;
 import com.jmedeisis.bugstick.JoystickListener;
 
@@ -156,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements EngineListener, S
         // TODO: Refactor this into Ground view
         Canvas canvas = bvlGround.getHolder().lockCanvas();
         try {
-            Paint paint = new Paint();
+            Paint paint = CanvasHelper.createPaint();
 
             canvas.drawColor(Color.WHITE);
             canvas.drawLine(0, 1, bvlGround.getWidth(), 1, paint);

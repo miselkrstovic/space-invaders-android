@@ -115,6 +115,7 @@ public class Alien extends Model {
                         _picture.loadFromFile(R.mipmap.alien_gamma_1);
                         break;
                 }
+                break;
             case 4:
                 switch (_specie) {
                     case ALPHA:
@@ -127,6 +128,7 @@ public class Alien extends Model {
                         _picture.loadFromFile(R.mipmap.alien_gamma_2);
                         break;
                 }
+                break;
         }
         _frame++;
         if (_frame > 8) _frame = 0;
