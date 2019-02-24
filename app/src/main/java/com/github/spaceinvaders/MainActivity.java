@@ -210,7 +210,7 @@ public class MainActivity extends AppCompatActivity implements EngineListener, S
 
         @Override
         public void onDrag(float degrees, float offset) {
-            float movementThreshold = 0.5f;
+            float movementThreshold = 0.2f;
 
             if (offset >= movementThreshold) {
                 if (Math.abs(degrees) == 0) {

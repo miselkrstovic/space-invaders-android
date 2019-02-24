@@ -380,10 +380,10 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
                 if (_laserCannon.isShowing()) {
                     switch (key) {
                         case MOVE_TANK_LEFT:
-                            _laserCannon.setLeft(_laserCannon.getLeft() - GameSettings.HORIZONTAL_PIXEL_SHIFT * 2);
+                            _laserCannon.setLeft(_laserCannon.getLeft() - GameSettings.HORIZONTAL_PIXEL_SHIFT * 2 - (int) (offset * 10));
                             break;
                         case MOVE_TANK_RIGHT:
-                            _laserCannon.setLeft(_laserCannon.getLeft() + GameSettings.HORIZONTAL_PIXEL_SHIFT * 2);
+                            _laserCannon.setLeft(_laserCannon.getLeft() + GameSettings.HORIZONTAL_PIXEL_SHIFT * 2 + (int) (offset * 10));
                             break;
                         case LAUNCH_MISSILE:
                             _shootMissile();
@@ -794,10 +794,18 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
     }
 
     public boolean processKeyUp(int keyCode, KeyEvent event, float offset) {
-        if (_keyQueue.size() == 0) {
-            _keyQueue.add(new Tuple<>(translateKey(keyCode, event), offset));
+        if (_keyQueue.size() > 0) {
+            Tuple<TranslatedKey, Float> tuple = new Tuple<>(translateKey(keyCode, event), offset);
+
+            // Checking to avoid adding a tuple that already enqueued
+            if (!_keyQueue.peek().equals(tuple)) {
+                _keyQueue.add(tuple);
+            }
 
             if (_state == STOPPED) _processKey(); // TODO: Special patch
+        } else {
+            Tuple<TranslatedKey, Float> tuple = new Tuple<>(translateKey(keyCode, event), offset);
+            _keyQueue.add(tuple);
         }
         return true;
     }
