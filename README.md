@@ -25,7 +25,7 @@ There are still a lot of missing features, and bugs to be squashed. For the curi
 
 ## Acknowledgment
 
-https://commons.wikimedia.org/wiki/File:Space_invaders_logo.svg
+[Space invaders logo](https://commons.wikimedia.org/wiki/File:Space_invaders_logo.svg) from Wikimedia Commons, the free media repository.
 
 ## Contributing
 
