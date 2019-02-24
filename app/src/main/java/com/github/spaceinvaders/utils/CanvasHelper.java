@@ -2,13 +2,13 @@ package com.github.spaceinvaders.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
 import com.github.spaceinvaders.compatibility.Canvas32;
 import com.github.spaceinvaders.compatibility.Rect32;
 import com.github.spaceinvaders.engine.Engine;
+import com.github.spaceinvaders.models.Model;
 
 public class CanvasHelper {
 
@@ -63,6 +63,10 @@ public class CanvasHelper {
         );
     }
 
+    public static void drawLine(int startX, int startY, int stopX, int stopY, Paint paint) {
+        getCanvas().drawLine(startX, startY, stopX, stopY, paint);
+    }
+
     public static void drawText(String str, int x, int y) {
         getCanvas().drawText(str, x, y, createPaint());
     }
@@ -81,7 +85,7 @@ public class CanvasHelper {
 
     public static Paint createPaint() {
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint.setColor(Color.WHITE);
+        paint.setColor(Model.PIXIL_COLOR_ON);
         paint.setStyle(Paint.Style.FILL);
         return paint;
     }

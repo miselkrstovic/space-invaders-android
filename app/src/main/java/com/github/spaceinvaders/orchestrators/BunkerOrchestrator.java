@@ -4,6 +4,7 @@ import android.graphics.Color;
 
 import com.github.spaceinvaders.engine.Freeable;
 import com.github.spaceinvaders.models.Bunker;
+import com.github.spaceinvaders.models.Model;
 import com.github.spaceinvaders.utils.CanvasHelper;
 import com.github.spaceinvaders.utils.Utilities;
 
@@ -49,8 +50,8 @@ public class BunkerOrchestrator implements Freeable {
         for (int x = 0; x < _map.size(); x++) {
             if (_map.get(x) != null) {
                 Bunker bunker = _map.get(x); // We are reusing the previous bunker object
-                bunker.getPicture().setPenColor(Utilities.setAlpha(Color.WHITE, 0xFF));
-                bunker.getPicture().setFillRect(0, 0, _map.get(x).getWidth(), _map.get(x).getHeight(), Utilities.setAlpha(Color.WHITE, 0xFF));
+                bunker.getPicture().setPenColor(Utilities.setAlpha(Model.PIXIL_COLOR_ON, 0xFF));
+                bunker.getPicture().setFillRect(0, 0, _map.get(x).getWidth(), _map.get(x).getHeight(), Utilities.setAlpha(Model.PIXIL_COLOR_ON, 0xFF));
                 _map.get(x).reset();
             } else {
                 Bunker bunker = new Bunker(this, _explosionOrchestrator);

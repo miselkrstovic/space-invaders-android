@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements EngineListener, S
     private TextView VpLEDLabel1;
     private TextView VpLEDLabel2;
 
-    private SurfaceView bvlGround;
     private LinearLayout layLivesBar;
     private TextView lblPlayerLives;
     private ImageView imgPlayerLive1;
@@ -68,7 +67,6 @@ public class MainActivity extends AppCompatActivity implements EngineListener, S
         VpLEDLabel1 = findViewById(R.id.vpLEDLabel1);
         VpLEDLabel2 = findViewById(R.id.vpLEDLabel2);
 
-        bvlGround = findViewById(R.id.bvlGround);
         layLivesBar = findViewById(R.id.pnlLivesBar);
         lblPlayerLives = findViewById(R.id.lblPlayerLives);
         imgPlayerLive1 = findViewById(R.id.imgPlayerLive1);
@@ -82,8 +80,6 @@ public class MainActivity extends AppCompatActivity implements EngineListener, S
 
         joystick = findViewById(R.id.joystick);
         joystick.setJoystickListener(joystickHandler);
-
-        bvlGround = findViewById(R.id.bvlGround);
 
         engine = findViewById(R.id.pnlGameEngine);
         engine.setGameListener(this);
@@ -150,30 +146,6 @@ public class MainActivity extends AppCompatActivity implements EngineListener, S
         imgPlayerLive3.setVisibility((engine.getPlayerLives() >= 3) ? View.VISIBLE : View.INVISIBLE);
         imgPlayerLive4.setVisibility((engine.getPlayerLives() >= 4) ? View.VISIBLE : View.INVISIBLE);
         imgPlayerLive5.setVisibility((engine.getPlayerLives() >= 5) ? View.VISIBLE : View.INVISIBLE);
-    }
-
-    @Override
-    public void onUpdateGroundHole(Engine sender) {
-        // TODO: Refactor this into Ground view
-        Canvas canvas = bvlGround.getHolder().lockCanvas();
-        try {
-            Paint paint = CanvasHelper.createPaint();
-
-            canvas.drawColor(Color.WHITE);
-            canvas.drawLine(0, 1, bvlGround.getWidth(), 1, paint);
-            canvas.drawLine(0, 2, bvlGround.getWidth(), 2, paint);
-
-            for (int i = 0; i < engine.groundHoles.size(); i++) {
-                if (engine.groundHoles.get(i)) {
-                    canvas.drawColor(getResources().getColor(R.color.black));
-                    canvas.drawRect(
-                            new android.graphics.Rect(i - bvlGround.getLeft(), 1, i + 3 - bvlGround.getLeft(), 3),
-                            paint);
-                }
-            }
-        } finally {
-            bvlGround.getHolder().unlockCanvasAndPost(canvas);
-        }
     }
 
     @Override

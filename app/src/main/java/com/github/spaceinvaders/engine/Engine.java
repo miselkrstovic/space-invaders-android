@@ -26,6 +26,7 @@ import com.github.spaceinvaders.enums.MissileType;
 import com.github.spaceinvaders.enums.SoundFile;
 import com.github.spaceinvaders.enums.TranslatedKey;
 import com.github.spaceinvaders.models.Explosion;
+import com.github.spaceinvaders.models.Ground;
 import com.github.spaceinvaders.models.LaserCannon;
 import com.github.spaceinvaders.models.Missile;
 import com.github.spaceinvaders.models.Model;
@@ -77,8 +78,9 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
     public MissileOrchestrator missileOrchestrator;
     public ExplosionOrchestrator explosionOrchestrator;
     public BunkerOrchestrator bunkerOrchestrator;
+    public Ground ground;
+
     public ScoreKeeper scoreKeeper;
-    public SparseBooleanArray groundHoles;
 
     private int sleepInterval = 33; // 1 second div 30 fps
 
@@ -144,9 +146,8 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
             alienOrchestrator.setExplosionOrchestrator(explosionOrchestrator);
             bunkerOrchestrator = new BunkerOrchestrator();
             bunkerOrchestrator.setExplosionOrchestrator(explosionOrchestrator);
+            ground = new Ground();
             scoreKeeper = new ScoreKeeper(this);
-
-            groundHoles = new SparseBooleanArray(CanvasHelper.getWidth()); // TODO: Must be refreshed on screen resize
 
             _backgroundImage = new Bitmap32();
             _backgroundImage.loadFromFile(R.drawable.earth);
@@ -168,12 +169,11 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
     }
 
     public void cleanUp() {
-        groundHoles.clear();
-
         _mainLoop.cancel();
 
         _backgroundImage.free();
         _keyQueue.clear();
+        ground.free();
         scoreKeeper.free();
         explosionOrchestrator.free();
         missileOrchestrator.free();
@@ -231,13 +231,6 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
         }
     }
 
-    public void _zero(SparseBooleanArray array) {
-        array.clear();
-        for (int i = 0; i < array.size(); i++) {
-            array.append(i, false);
-        }
-    }
-
     public void setGameListener(EngineListener listener) {
         this.listener = listener;
     }
@@ -258,7 +251,7 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
                         _state = RUNNING;
                         _playerLives = GameSettings.INITIAL_PLAYER_LIVES;
                         _laserCannon.setLeft(8);
-                        _zero(groundHoles);
+                        ground.reset();
 
                         notifyStartGame();
                         notifyUpdateLives();
@@ -346,12 +339,6 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
         }
     }
 
-    private void notifyUpdateGroundHole() {
-        if (listener != null) {
-            listener.onUpdateGroundHole(this);
-        }
-    }
-
     private void showMessage(String msg) {
         if (listener != null) {
             listener.onShowMessage(msg);
@@ -417,8 +404,7 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
 
     @Override
     public void updateHole(Object sender, int key, int shift) {
-        groundHoles.append(key, true);
-        notifyUpdateGroundHole();
+        ground.append(key, true);
     }
 
     @Override
@@ -515,6 +501,7 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
             missileOrchestrator.doPaint(); // UpdatePlayer
             alienOrchestrator.doPaint(); // UpdateAliens
             bunkerOrchestrator.doPaint();
+            ground.doPaint();
             _mysteryShip.doPaint();
             if (_state == RUNNING) {
                 _checkCollisions();
@@ -759,6 +746,7 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
             bunkerOrchestrator.init();
             _mysteryShip.init();
             _laserCannon.init();
+            ground.init();
         }
 
         _setState(RUNNING);

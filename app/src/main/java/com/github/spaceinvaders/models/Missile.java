@@ -35,8 +35,8 @@ public class Missile extends Model {
         setWidth(MISSILE_WIDTH);
         setHeight(MISSILE_HEIGHT);
 
-        setBrushColor(Color.WHITE);
-        setPenColor(Color.WHITE);
+        setBrushColor(PIXIL_COLOR_ON);
+        setPenColor(PIXIL_COLOR_ON);
 
         _missileOrchestrator = missileOrchestrator;
         setExplosionOrchestrator(explosionOrchestrator);

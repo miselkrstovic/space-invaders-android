@@ -7,6 +7,5 @@ public interface EngineListener {
     void onShutdown(Engine sender);
     void onUpdateScores(ScoreKeeper sender);
     void onUpdateLives(ScoreKeeper sender);
-    void onUpdateGroundHole(Engine sender);
     void onShowMessage(String message);
 }

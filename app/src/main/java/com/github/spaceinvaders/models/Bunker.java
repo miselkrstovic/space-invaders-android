@@ -1,7 +1,6 @@
 package com.github.spaceinvaders.models;
 
 import android.graphics.Color;
-import android.graphics.Paint;
 
 import com.github.spaceinvaders.compatibility.Bitmap32;
 import com.github.spaceinvaders.compatibility.Rect32;
@@ -30,9 +29,9 @@ public class Bunker extends Model {
         _picture.setWidth(BUNKER_WIDTH);
         _picture.setHeight(BUNKER_HEIGHT);
         _picture.setMasterAlpha(0xFF);
-        _picture.setPenColor(0xFFFFFF);
+        _picture.setPenColor(PIXIL_COLOR_ON);
         _picture.setDrawMode(Bitmap32.DrawMode.BLEND);
-        _picture.setFillRect(0, 0, _picture.getWidth(), _picture.getHeight(), 0xFFFFFF);
+        _picture.setFillRect(0, 0, _picture.getWidth(), _picture.getHeight(), PIXIL_COLOR_ON);
 
         setBunkerOrchestrator(bunkerOrchestrator);
         setExplosionOrchestrator(explosionOrchestrator);
@@ -90,13 +89,13 @@ public class Bunker extends Model {
             }
 
             if (!result) {
-                _picture.setPenColor(Utilities.setAlpha(Color.BLACK, 0x00));
+                _picture.setPenColor(Utilities.setAlpha(PIXIL_COLOR_OFF, 0x00));
                 _picture.setFillRect(
                         Math.max(Math.abs(getLeft() - missileRect.getLeft()) - 1, 0),
                         i,
                         Math.min(Math.abs(getLeft() - missileRect.getLeft()) + 2 + 1, _picture.getWidth()),
                         Math.min(i + missileHeight + 1, _picture.getHeight()),
-                        Utilities.setAlpha(Color.BLACK, 0x00)
+                        Utilities.setAlpha(PIXIL_COLOR_OFF, 0x00)
                 );
                 result = false;
                 _bitmap[slotIndex][i] = true;
@@ -120,13 +119,13 @@ public class Bunker extends Model {
             }
 
             if (!result) {
-                _picture.setPenColor(Utilities.setAlpha(Color.BLACK, 0x00));
+                _picture.setPenColor(Utilities.setAlpha(PIXIL_COLOR_OFF, 0x00));
                 _picture.setFillRect(
                         Math.max(Math.abs(getLeft() - missileRect.getLeft()) - 2, 0),
                         Math.max(i - missileHeight, 0),
                         Math.min(Math.abs(getLeft() - missileRect.getLeft()) + 2 + 2, _picture.getWidth()),
                         Math.min(i + 1, _picture.getHeight()),
-                        Utilities.setAlpha(Color.BLACK, 0x00)
+                        Utilities.setAlpha(PIXIL_COLOR_OFF, 0x00)
                 );
                 result = false;
                 _bitmap[slotIndex][i] = true;
