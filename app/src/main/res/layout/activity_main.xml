@@ -97,12 +97,13 @@
 
   <com.jmedeisis.bugstick.Joystick
       android:id="@+id/joystick"
-      android:layout_width="64dp"
+      android:layout_width="128dp"
       android:layout_height="64dp"
       android:layout_marginEnd="8dp"
       android:layout_marginBottom="8dp"
       android:background="@color/white"
       app:motion_constraint="Horizontal"
+      app:force_square="false"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent">
 

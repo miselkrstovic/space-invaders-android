@@ -27,6 +27,12 @@ There are still a lot of missing features, and bugs to be squashed. For the curi
 
 https://commons.wikimedia.org/wiki/File:Space_invaders_logo.svg
 
+## Contributing
+
+There are still a lot of missing features, and bugs to be squashed. For the curious they can be found in the [TODO](TODO.md) file.
+
+Please take a look at the [contributing](CONTRIBUTING.md) guidelines if you're interested in helping!
+
 ## License
 
 Space Invaders for Android is released under the MIT license.
