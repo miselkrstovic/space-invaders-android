@@ -18,6 +18,7 @@ import com.github.spaceinvaders.R;
 import com.github.spaceinvaders.compatibility.Bitmap32;
 import com.github.spaceinvaders.compatibility.Canvas32;
 import com.github.spaceinvaders.compatibility.Point32;
+import com.github.spaceinvaders.compatibility.Tuple;
 import com.github.spaceinvaders.enums.ExplosionType;
 import com.github.spaceinvaders.enums.GameState;
 import com.github.spaceinvaders.enums.MissileDirection;
@@ -37,6 +38,7 @@ import com.github.spaceinvaders.utils.CanvasHelper;
 import com.github.spaceinvaders.utils.Utilities;
 
 import java.util.LinkedList;
+import java.util.Objects;
 import java.util.Queue;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -60,7 +62,7 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
     private GameState _state = STOPPED;
     private int _playerLives;
     private Timer _mainLoop;
-    private Queue<TranslatedKey> _keyQueue = new LinkedList<>();
+    private Queue<Tuple<TranslatedKey, Float>> _keyQueue = new LinkedList<>();
     private LaserCannon _laserCannon;
     private MysteryShip _mysteryShip;
     private Bitmap32 _backgroundImage;
@@ -357,11 +359,11 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
     }
 
     public void _processKey() {
-        TranslatedKey key;
-
         if (_keyQueue == null || _keyQueue.size() == 0) return;
 
-        key = _keyQueue.poll();
+        Tuple<TranslatedKey, Float> tuple = _keyQueue.poll();
+        TranslatedKey key = tuple.x;
+        float offset = tuple.y;
 
         switch (_state) {
             case STOPPED:
@@ -788,8 +790,12 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
     }
 
     public boolean processKeyUp(int keyCode, KeyEvent event) {
+        return processKeyUp(keyCode, event, 0);
+    }
+
+    public boolean processKeyUp(int keyCode, KeyEvent event, float offset) {
         if (_keyQueue.size() == 0) {
-            _keyQueue.add(translateKey(keyCode, event));
+            _keyQueue.add(new Tuple<>(translateKey(keyCode, event), offset));
 
             if (_state == STOPPED) _processKey(); // TODO: Special patch
         }

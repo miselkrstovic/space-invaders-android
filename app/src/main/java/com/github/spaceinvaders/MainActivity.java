@@ -215,10 +215,10 @@ public class MainActivity extends AppCompatActivity implements EngineListener, S
             if (offset >= movementThreshold) {
                 if (Math.abs(degrees) == 0) {
                     KeyEvent keyEvent = new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_RIGHT);
-                    engine.processKeyUp(KeyEvent.ACTION_DOWN, keyEvent);
+                    engine.processKeyUp(KeyEvent.ACTION_DOWN, keyEvent, offset);
                 } else if (Math.abs(degrees) == 180) {
                     KeyEvent keyEvent = new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_LEFT);
-                    engine.processKeyUp(KeyEvent.ACTION_DOWN, keyEvent);
+                    engine.processKeyUp(KeyEvent.ACTION_DOWN, keyEvent, offset);
                 }
             }
         }
