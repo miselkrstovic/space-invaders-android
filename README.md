@@ -1,4 +1,4 @@
-# Space Invaders for Android
+# Space Invaders for Android (alpha version)
 
 An Android implementation of the classical arcade game [Space Invaders](https://en.wikipedia.org/wiki/Space_Invaders). This version is a port of the [Space Invaders for Delphi](https://github.com/miselkrstovic/space-invaders-delphi) project.
 
