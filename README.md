@@ -1,6 +1,6 @@
 # Space Invaders for Android (alpha version)
 
-An Android implementation of the classical arcade game [Space Invaders](https://en.wikipedia.org/wiki/Space_Invaders). This version is a port of the [Space Invaders for Delphi](https://github.com/miselkrstovic/space-invaders-delphi) project.
+An Android implementation of the classical arcade game [Space Invaders](https://en.wikipedia.org/wiki/Space_Invaders) written in Java. This version is a port of the [Space Invaders for Delphi](https://github.com/miselkrstovic/space-invaders-delphi) project.
 
 ### Screenshots
 
@@ -28,8 +28,6 @@ There are still a lot of missing features, and bugs to be squashed. For the curi
 [Space invaders logo](https://commons.wikimedia.org/wiki/File:Space_invaders_logo.svg) from Wikimedia Commons, the free media repository.
 
 ## Contributing
-
-There are still a lot of missing features, and bugs to be squashed. For the curious they can be found in the [TODO](TODO.md) file.
 
 Please take a look at the [contributing](CONTRIBUTING.md) guidelines if you're interested in helping!
 
