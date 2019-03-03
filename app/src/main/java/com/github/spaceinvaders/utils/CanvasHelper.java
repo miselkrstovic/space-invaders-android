@@ -64,11 +64,22 @@ public class CanvasHelper {
     }
 
     public static void drawLine(int startX, int startY, int stopX, int stopY, Paint paint) {
-        getCanvas().drawLine(startX, startY, stopX, stopY, paint);
+        getCanvas().drawLine(
+                Utilities.pxToDp(startX),
+                Utilities.pxToDp(startY),
+                Utilities.pxToDp(stopX),
+                Utilities.pxToDp(stopY),
+                paint
+        );
     }
 
     public static void drawText(String str, int x, int y) {
-        getCanvas().drawText(str, x, y, createPaint());
+        getCanvas().drawText(
+                str,
+                Utilities.pxToDp(x),
+                Utilities.pxToDp(y),
+                createPaint()
+        );
     }
 
     private static Rect textBounds = new Rect();
