@@ -1,9 +1,6 @@
 package com.github.spaceinvaders;
 
 import android.content.res.Configuration;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
@@ -11,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
-import android.view.SurfaceView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,7 +18,6 @@ import com.github.spaceinvaders.engine.Engine;
 import com.github.spaceinvaders.engine.EngineListener;
 import com.github.spaceinvaders.engine.ScoreKeeper;
 import com.github.spaceinvaders.engine.ScoreKeeperListener;
-import com.github.spaceinvaders.utils.CanvasHelper;
 import com.jmedeisis.bugstick.Joystick;
 import com.jmedeisis.bugstick.JoystickListener;
 
@@ -91,10 +86,17 @@ public class MainActivity extends AppCompatActivity implements EngineListener, S
     }
 
     @Override
-    protected void onStop() {
+    protected void onPause() {
+        engine.pauseGame();
+
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
         engine.cleanUp();
 
-        super.onStop();
+        super.onDestroy();
     }
 
     @Override

@@ -391,6 +391,7 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
                 break;
             case PAUSED:
                 switch (key) {
+                    case LAUNCH_MISSILE:
                     case PAUSE_GAME:
                         startGame(false);
                         break;
@@ -789,12 +790,17 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
             if (!_keyQueue.peek().equals(tuple)) {
                 _keyQueue.add(tuple);
             }
-
-            if (_state == STOPPED) _processKey(); // TODO: Special patch
         } else {
             Tuple<TranslatedKey, Float> tuple = new Tuple<>(translateKey(keyCode, event), offset);
             _keyQueue.add(tuple);
         }
+
+        if (_state != RUNNING) {
+            _processKey();
+        } else {
+            // Allow keyQueue to be dequeued by main loop
+        }
+
         return true;
     }
 
