@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/space-invaders-android.iml" filepath="$PROJECT_DIR$/space-invaders-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Workspace-space-invaders-android.iml" filepath="$PROJECT_DIR$/Workspace-space-invaders-android.iml" group="space-invaders-android" />
+      <module fileurl="file://$PROJECT_DIR$/app/space-invaders-android-app.iml" filepath="$PROJECT_DIR$/app/space-invaders-android-app.iml" group="space-invaders-android/app" />
     </modules>
   </component>
 </project>

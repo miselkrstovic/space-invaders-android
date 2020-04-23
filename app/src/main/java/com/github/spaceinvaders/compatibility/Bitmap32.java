@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Paint;
-import android.support.annotation.ColorInt;
+import androidx.annotation.ColorInt;
 
 import com.github.spaceinvaders.MainApplication;
 import com.github.spaceinvaders.engine.Freeable;

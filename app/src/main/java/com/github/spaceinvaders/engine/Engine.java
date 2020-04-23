@@ -6,9 +6,8 @@ import android.graphics.PixelFormat;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.RequiresApi;
 import android.util.AttributeSet;
-import android.util.SparseBooleanArray;
 import android.view.KeyEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -39,7 +38,6 @@ import com.github.spaceinvaders.utils.CanvasHelper;
 import com.github.spaceinvaders.utils.Utilities;
 
 import java.util.LinkedList;
-import java.util.Objects;
 import java.util.Queue;
 import java.util.Timer;
 import java.util.TimerTask;
