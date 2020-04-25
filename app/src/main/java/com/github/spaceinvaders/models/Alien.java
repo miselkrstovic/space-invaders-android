@@ -17,7 +17,7 @@ import static com.github.spaceinvaders.enums.AlienDirection.RIGHT;
 import static com.github.spaceinvaders.enums.AlienSpecie.ALPHA;
 import static com.github.spaceinvaders.enums.MissileType.ALIEN;
 
-public class Alien extends Model {
+public class Alien extends Model implements Paintable {
 
     private int _frame;
     private MissileOrchestrator _missileOrchestrator;
@@ -77,7 +77,7 @@ public class Alien extends Model {
         return _picture.getWidth();
     }
 
-    public void doPaint() {
+    public void paint() {
         CanvasHelper.drawBitmap(_picture.getBitmap(), getLeft(), getTop());
     }
 

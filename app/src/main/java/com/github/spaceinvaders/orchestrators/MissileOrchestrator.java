@@ -7,7 +7,7 @@ import com.github.spaceinvaders.models.Missile;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MissileOrchestrator implements Orchestratable, Freeable {
+public class MissileOrchestrator implements BatchPaintable, Orchestratable, Freeable {
 
     private List<Missile> _alienObjectList;
     private List<Missile> _playerObjectList;
@@ -110,20 +110,18 @@ public class MissileOrchestrator implements Orchestratable, Freeable {
         _alienObjectList.set(index, value);
     }
 
-    public void doPaint() {
-        Missile missile;
-
+    public void batchPaint() {
         if (_alienObjectList.size() > 0) {
             for (int i = 0; i < _alienObjectList.size(); i++) {
-                missile = _alienObjectList.get(i);
-                missile.doPaint();
+                Missile missile = _alienObjectList.get(i);
+                missile.paint();
             }
         }
 
         if (_playerObjectList.size() > 0) {
             for (int i = 0; i < _playerObjectList.size(); i++) {
-                missile = _playerObjectList.get(i);
-                missile.doPaint();
+                Missile missile = _playerObjectList.get(i);
+                missile.paint();
             }
         }
     }

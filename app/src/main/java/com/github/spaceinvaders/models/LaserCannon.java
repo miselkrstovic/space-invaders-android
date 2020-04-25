@@ -5,7 +5,7 @@ import com.github.spaceinvaders.compatibility.Bitmap32;
 import com.github.spaceinvaders.engine.Freeable;
 import com.github.spaceinvaders.utils.CanvasHelper;
 
-public class LaserCannon extends Model implements Freeable {
+public class LaserCannon extends Model implements Paintable, Freeable {
 
     private int _laserCannonCount;
     private boolean _laserCannonEnabled;
@@ -41,7 +41,7 @@ public class LaserCannon extends Model implements Freeable {
         _laserCannonEnabled = true;
     }
 
-    public void doPaint() {
+    public void paint() {
         if (_laserCannonEnabled) {
             setTop(CanvasHelper.getHeight() - (int) (48 * 1.5));
             CanvasHelper.drawBitmap(_picture.getBitmap(), getLeft(), getTop());

@@ -6,7 +6,7 @@ import com.github.spaceinvaders.models.Explosion;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExplosionOrchestrator implements Orchestratable, Freeable {
+public class ExplosionOrchestrator implements BatchPaintable, Orchestratable, Freeable {
 
     private List<Explosion> _explosionObjectList;
 
@@ -68,13 +68,12 @@ public class ExplosionOrchestrator implements Orchestratable, Freeable {
         _explosionObjectList.set(index, value);
     }
 
-    public void doPaint() {
-        Explosion explosion;
+    public void batchPaint() {
         if (_explosionObjectList.size() > 0) {
             for (int i = 0; i < _explosionObjectList.size(); i ++) {
-                explosion = _explosionObjectList.get(i);
+                Explosion explosion = _explosionObjectList.get(i);
                 if (explosion!=null) {
-                    explosion.doPaint();
+                    explosion.paint();
                 }
             }
         }

@@ -62,8 +62,6 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
     private int _playerLives;
     private Timer _mainLoop;
     private Queue<Tuple<TranslatedKey, Float>> _keyQueue = new LinkedList<>();
-    private LaserCannon _laserCannon;
-    private MysteryShip _mysteryShip;
     private Bitmap32 _backgroundImage;
     private boolean _flipFlop;
     private int _flipFlopCounter;
@@ -72,11 +70,14 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
 
     private static Canvas _canvas;
 
+    private LaserCannon _laserCannon;
+    private MysteryShip _mysteryShip;
+    public Ground _ground;
+
     public AlienOrchestrator alienOrchestrator;
     public MissileOrchestrator missileOrchestrator;
     public ExplosionOrchestrator explosionOrchestrator;
     public BunkerOrchestrator bunkerOrchestrator;
-    public Ground ground;
 
     public ScoreKeeper scoreKeeper;
 
@@ -144,7 +145,7 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
             alienOrchestrator.setExplosionOrchestrator(explosionOrchestrator);
             bunkerOrchestrator = new BunkerOrchestrator();
             bunkerOrchestrator.setExplosionOrchestrator(explosionOrchestrator);
-            ground = new Ground();
+            _ground = new Ground();
             scoreKeeper = new ScoreKeeper(this);
 
             _backgroundImage = new Bitmap32();
@@ -171,7 +172,7 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
 
         _backgroundImage.free();
         _keyQueue.clear();
-        ground.free();
+        _ground.free();
         scoreKeeper.free();
         explosionOrchestrator.free();
         missileOrchestrator.free();
@@ -249,7 +250,7 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
                         _state = RUNNING;
                         _playerLives = GameSettings.INITIAL_PLAYER_LIVES;
                         _laserCannon.setLeft(8);
-                        ground.reset();
+                        _ground.reset();
 
                         notifyStartGame();
                         notifyUpdateLives();
@@ -403,7 +404,7 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
 
     @Override
     public void updateHole(Object sender, int key, int shift) {
-        ground.append(key, true);
+        _ground.append(key, true);
     }
 
     @Override
@@ -495,13 +496,13 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
                 }
             }
 
-            _laserCannon.doPaint();
-            explosionOrchestrator.doPaint();
-            missileOrchestrator.doPaint(); // UpdatePlayer
-            alienOrchestrator.doPaint(); // UpdateAliens
-            bunkerOrchestrator.doPaint();
-            ground.doPaint();
-            _mysteryShip.doPaint();
+            _laserCannon.paint();
+            explosionOrchestrator.batchPaint();
+            missileOrchestrator.batchPaint(); // UpdatePlayer
+            alienOrchestrator.batchPaint(); // UpdateAliens
+            bunkerOrchestrator.batchPaint();
+            _ground.paint();
+            _mysteryShip.paint();
             if (_state == RUNNING) {
                 _checkCollisions();
                 _checkGameOver();
@@ -745,7 +746,7 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
             bunkerOrchestrator.init();
             _mysteryShip.init();
             _laserCannon.init();
-            ground.init();
+            _ground.init();
         }
 
         _setState(RUNNING);

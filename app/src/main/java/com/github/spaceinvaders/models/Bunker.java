@@ -10,7 +10,7 @@ import com.github.spaceinvaders.orchestrators.ExplosionOrchestrator;
 import com.github.spaceinvaders.utils.CanvasHelper;
 import com.github.spaceinvaders.utils.Utilities;
 
-public class Bunker extends Model {
+public class Bunker extends Model implements Paintable {
 
     private static final int BUNKER_WIDTH = 42;
     private static final int BUNKER_HEIGHT = 32;
@@ -45,7 +45,7 @@ public class Bunker extends Model {
         super.finalize();
     }
 
-    public void doPaint() {
+    public void paint() {
         CanvasHelper.drawRect(getBoundsRect(), CanvasHelper.createPaint());
 
 // TODO:        CanvasHelper.drawBitmap(_picture.getBitmap(), getLeft(), getTop());

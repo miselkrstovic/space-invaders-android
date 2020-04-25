@@ -93,12 +93,12 @@ public class BunkerOrchestrator implements Orchestratable, Freeable {
         return _map.get(i);
     }
 
-    public void doPaint() {
+    public void batchPaint() {
         if (!_initialized) lazyInit();
 
         for (int i = 0; i < _map.size() ; i++) {
             if (_map.get(i) != null) {
-                _map.get(i).doPaint();
+                _map.get(i).paint();
             }
         }
     }

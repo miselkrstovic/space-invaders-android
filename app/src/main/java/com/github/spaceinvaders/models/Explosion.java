@@ -8,7 +8,7 @@ import com.github.spaceinvaders.utils.CanvasHelper;
 
 import static com.github.spaceinvaders.enums.ExplosionType.PLAYER;
 
-public class Explosion extends Model {
+public class Explosion extends Model implements Paintable {
 
     private boolean _garbage;
     private int _frames;
@@ -46,7 +46,7 @@ public class Explosion extends Model {
         _garbage = true;
     }
 
-    public void doPaint() {
+    public void paint() {
         _picture.setDrawMode(Bitmap32.DrawMode.BLEND);
         CanvasHelper.drawBitmap(_picture.getBitmap(), getLeft(), getTop());
     }

@@ -7,7 +7,7 @@ import com.github.spaceinvaders.compatibility.Bitmap32;
 import com.github.spaceinvaders.engine.Freeable;
 import com.github.spaceinvaders.utils.CanvasHelper;
 
-public class Ground extends Model implements Freeable {
+public class Ground extends Model implements Paintable, Freeable {
 
     private Bitmap32 _picture;
     public SparseBooleanArray _bitmap;
@@ -28,7 +28,7 @@ public class Ground extends Model implements Freeable {
         _initialized = true;
     }
 
-    public void doPaint() {
+    public void paint() {
         if (!_initialized) lazyInit();
 
         Paint paint = CanvasHelper.createPaint();

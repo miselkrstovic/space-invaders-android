@@ -11,7 +11,7 @@ import com.github.spaceinvaders.utils.Utilities;
 
 import static com.github.spaceinvaders.enums.MysteryShipDirection.LEFT;
 
-public class MysteryShip extends Model implements Freeable {
+public class MysteryShip extends Model implements Paintable, Freeable {
 
     private MysteryShipDirection _direction = LEFT;
     private int _mysteryShipCount;
@@ -62,7 +62,7 @@ public class MysteryShip extends Model implements Freeable {
         _mysteryShipEnabled = false;
     }
 
-    public void doPaint() {
+    public void paint() {
         CanvasHelper.drawBitmap(_picture.getBitmap(), getLeft(), getTop());
     }
 

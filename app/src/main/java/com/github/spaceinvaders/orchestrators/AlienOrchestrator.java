@@ -15,7 +15,7 @@ import static com.github.spaceinvaders.enums.AlienSpecie.ALPHA;
 import static com.github.spaceinvaders.enums.AlienSpecie.BETA;
 import static com.github.spaceinvaders.enums.AlienSpecie.GAMMA;
 
-public class AlienOrchestrator implements Orchestratable, Freeable {
+public class AlienOrchestrator implements BatchPaintable, Orchestratable, Freeable {
 
     private int _thresholdCount;
     private Alien[][] _map2D;
@@ -222,12 +222,12 @@ public class AlienOrchestrator implements Orchestratable, Freeable {
         this._explosionOrchestrator = explosionOrchestrator;
     }
 
-    public void doPaint() {
+    public void batchPaint() {
         for (int x = 1; x <= GameSettings.ALIEN_MESH_WIDTH; x++){
             for (int y = 1; y <= GameSettings.ALIEN_MESH_HEIGHT; y++){
                 if (_map2D[x][y]!=null){
                     if (_map2D[x][y].isVisible()) {
-                        _map2D[x][y].doPaint();
+                        _map2D[x][y].paint();
                     }
                 }
             }

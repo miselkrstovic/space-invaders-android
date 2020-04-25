@@ -15,7 +15,7 @@ import static com.github.spaceinvaders.enums.ExplosionType.GROUND;
 import static com.github.spaceinvaders.enums.ExplosionType.SKY;
 import static com.github.spaceinvaders.enums.MissileType.PLAYER;
 
-public class Missile extends Model {
+public class Missile extends Model implements Paintable {
 
     private static final int MISSILE_WIDTH = 2;
     private static final int MISSILE_HEIGHT = 8;
@@ -46,7 +46,7 @@ public class Missile extends Model {
         _garbage = true;
     }
 
-    public void doPaint() {
+    public void paint() {
         if (_garbage) return;
 
         boolean save = _drawing;
