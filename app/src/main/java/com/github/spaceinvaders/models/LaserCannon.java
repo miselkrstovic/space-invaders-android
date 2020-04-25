@@ -12,10 +12,16 @@ public class LaserCannon extends Model implements Paintable, Freeable {
 
     private Bitmap32 _picture;
 
-    public LaserCannon() {
+    private static final LaserCannon INSTANCE = new LaserCannon();
+
+    private LaserCannon() {
         _picture = new Bitmap32();
         _picture.loadFromFile(R.mipmap.laser_cannon);
         _picture.setDrawMode(Bitmap32.DrawMode.BLEND);
+    }
+
+    public static LaserCannon getInstance() {
+        return INSTANCE;
     }
 
     public void free() {

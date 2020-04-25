@@ -10,13 +10,31 @@ public class ScoreKeeper implements Freeable {
     private int _highScore;
     private int _upLives;
 
-    private ScoreKeeperListener listener;
+    private ScoreKeeperListener _listener;
+
+    private static final ScoreKeeper INSTANCE = new ScoreKeeper();
+
+    private ScoreKeeper() {
+        _playerScore1 = 0;
+        _playerScore2 = 0;
+        _highScore = 0;
+        _upLives = 0;
+    }
+
+    public static ScoreKeeper getInstance(ScoreKeeperListener listener) {
+        if (listener != null) {
+            INSTANCE._listener = listener;
+        }
+        return INSTANCE;
+    }
 
     public void clear() {
       _playerScore1 = 0;
       _playerScore2 = 0;
 
-      if (listener!=null) listener.onUpdateScores(this);
+      if (_listener != null) {
+          _listener.onUpdateScores(this);
+      }
     }
 
     public void clearAll() {
@@ -24,16 +42,9 @@ public class ScoreKeeper implements Freeable {
       _playerScore2 = 0;
       _highScore = 0;
 
-      if (listener!=null) listener.onUpdateScores(this);
-    }
-
-    public ScoreKeeper(ScoreKeeperListener listener) {
-      _playerScore1 = 0;
-      _playerScore2 = 0;
-      _highScore = 0;
-      _upLives = 0;
-
-      this.listener = listener;
+      if (_listener != null) {
+          _listener.onUpdateScores(this);
+      }
     }
 
     public String formatScore(int value) {
@@ -68,10 +79,14 @@ public class ScoreKeeper implements Freeable {
         _playerScore1 = Value;
         _highScore = Math.max(_highScore, _playerScore1);
 
-        if (listener!=null) listener.onUpdateScores(this);
+        if (_listener != null) {
+            _listener.onUpdateScores(this);
+        }
 
         if ((Value / GameSettings.SCORE_MARK_FOR_NEW_LIFE) > _upLives) {
-          if (listener!=null) listener.onUpdateLives(this);
+          if (_listener != null) {
+              _listener.onUpdateLives(this);
+          }
           _upLives = Value / GameSettings.SCORE_MARK_FOR_NEW_LIFE;
         }
       }
@@ -82,17 +97,21 @@ public class ScoreKeeper implements Freeable {
         _playerScore2 = Value;
         _highScore = Math.max(_highScore, _playerScore2);
 
-        if (listener!=null) listener.onUpdateScores(this);
+        if (_listener != null) {
+            _listener.onUpdateScores(this);
+        }
 
         if ((Value / GameSettings.SCORE_MARK_FOR_NEW_LIFE) > _upLives) {
-          if (listener!=null) listener.onUpdateLives(this);
+          if (_listener != null) {
+              _listener.onUpdateLives(this);
+          }
           _upLives = Value / GameSettings.SCORE_MARK_FOR_NEW_LIFE;
         }        
       }
     }
 
     public void free() {
-        listener = null;
+        _listener = null;
     }
 
 }

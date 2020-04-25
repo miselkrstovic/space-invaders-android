@@ -13,8 +13,16 @@ public class Ground extends Model implements Paintable, Freeable {
     public SparseBooleanArray _bitmap;
     private boolean _initialized;
 
-    public void init() {
+    private static final Ground INSTANCE = new Ground();
 
+    private Ground() {}
+
+    public static Ground getInstance() {
+        return INSTANCE;
+    }
+
+    public void init() {
+        // Do nothing
     }
 
     private void lazyInit() {

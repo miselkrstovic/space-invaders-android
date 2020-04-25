@@ -73,13 +73,12 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
     private LaserCannon _laserCannon;
     private MysteryShip _mysteryShip;
     public Ground _ground;
+    public ScoreKeeper scoreKeeper;
 
     public AlienOrchestrator alienOrchestrator;
     public MissileOrchestrator missileOrchestrator;
     public ExplosionOrchestrator explosionOrchestrator;
     public BunkerOrchestrator bunkerOrchestrator;
-
-    public ScoreKeeper scoreKeeper;
 
     private int sleepInterval = 33; // 1 second div 30 fps
 
@@ -136,8 +135,8 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
     private void checkEngineInitialized() {
         if (!initialized) {
             // Initialize engine
-            _laserCannon = new LaserCannon();
-            _mysteryShip = new MysteryShip();
+            _laserCannon = LaserCannon.getInstance();
+            _mysteryShip = MysteryShip.getInstance();
             missileOrchestrator = new MissileOrchestrator(this);
             explosionOrchestrator = new ExplosionOrchestrator();
             alienOrchestrator = new AlienOrchestrator(this);
@@ -145,8 +144,8 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
             alienOrchestrator.setExplosionOrchestrator(explosionOrchestrator);
             bunkerOrchestrator = new BunkerOrchestrator();
             bunkerOrchestrator.setExplosionOrchestrator(explosionOrchestrator);
-            _ground = new Ground();
-            scoreKeeper = new ScoreKeeper(this);
+            _ground = Ground.getInstance();
+            scoreKeeper = ScoreKeeper.getInstance(this);
 
             _backgroundImage = new Bitmap32();
             _backgroundImage.loadFromFile(R.drawable.earth);

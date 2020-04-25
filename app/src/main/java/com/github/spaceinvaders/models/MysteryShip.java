@@ -20,13 +20,19 @@ public class MysteryShip extends Model implements Paintable, Freeable {
 
     private Bitmap32 _picture;
 
-    public MysteryShip() {
+    private static final MysteryShip INSTANCE = new MysteryShip();
+
+    private MysteryShip() {
         _picture = new Bitmap32();
         _picture.loadFromFile(R.mipmap.mystery_ship);
         _picture.setDrawMode(Bitmap32.DrawMode.BLEND);
         setTop(8);
 
         _mysteryShipThreshold = 1_000 / GameSettings.FPS * GameSettings.MYSTERY_SHIP_FREQUENCY;
+    }
+
+    public static MysteryShip getInstance() {
+        return INSTANCE;
     }
 
     public void free() {
