@@ -11,7 +11,7 @@ import com.github.spaceinvaders.utils.Utilities;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BunkerOrchestrator implements Freeable {
+public class BunkerOrchestrator implements Orchestratable, Freeable {
 
     private final int BUNKER_COUNT = 4;
 
@@ -34,10 +34,6 @@ public class BunkerOrchestrator implements Freeable {
                 _map.set(i, null);
             }
         }
-    }
-
-    private int getBunkerCount() {
-        return _map.size();
     }
 
     public void init() {
@@ -65,22 +61,24 @@ public class BunkerOrchestrator implements Freeable {
         _initialized = true;
     }
 
-    public void doPaint() {
-        if (!_initialized) lazyInit();
-
-        for (int i = 0; i < _map.size() ; i++) {
-            if (_map.get(i) != null) {
-                _map.get(i).doPaint();
-            }
-        }
-    }
-
     public void update() {
-        // Nothing
+        // Do nothing
     }
 
-    public Bunker getMapItem(int i) {
-        return _map.get(i);
+    public void clear() {
+        // Do nothing
+    }
+
+    private int getBunkerCount() {
+        return _map.size();
+    }
+
+    public ExplosionOrchestrator getExplosionOrchestrator() {
+        return _explosionOrchestrator;
+    }
+
+    public void setExplosionOrchestrator(ExplosionOrchestrator orchestrator) {
+        _explosionOrchestrator = orchestrator;
     }
 
     public List<Bunker> getMap() {
@@ -91,12 +89,18 @@ public class BunkerOrchestrator implements Freeable {
         _map = map;
     }
 
-    public ExplosionOrchestrator getExplosionOrchestrator() {
-        return _explosionOrchestrator;
+    public Bunker getMapItem(int i) {
+        return _map.get(i);
     }
 
-    public void setExplosionOrchestrator(ExplosionOrchestrator orchestrator) {
-        _explosionOrchestrator = orchestrator;
+    public void doPaint() {
+        if (!_initialized) lazyInit();
+
+        for (int i = 0; i < _map.size() ; i++) {
+            if (_map.get(i) != null) {
+                _map.get(i).doPaint();
+            }
+        }
     }
 
 }

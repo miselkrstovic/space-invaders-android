@@ -15,7 +15,7 @@ import static com.github.spaceinvaders.enums.AlienSpecie.ALPHA;
 import static com.github.spaceinvaders.enums.AlienSpecie.BETA;
 import static com.github.spaceinvaders.enums.AlienSpecie.GAMMA;
 
-public class AlienOrchestrator implements Freeable {
+public class AlienOrchestrator implements Orchestratable, Freeable {
 
     private int _thresholdCount;
     private Alien[][] _map2D;
@@ -42,46 +42,6 @@ public class AlienOrchestrator implements Freeable {
                 }
             }
         }
-    }
-
-    public void _updateFlipFlop() {
-        _flipFlop = !_flipFlop;
-    }
-
-    public void doPaint() {
-        for (int x = 1; x <= GameSettings.ALIEN_MESH_WIDTH; x++){
-            for (int y = 1; y <= GameSettings.ALIEN_MESH_HEIGHT; y++){
-                if (_map2D[x][y]!=null){
-                    if (_map2D[x][y].isVisible()) {
-                        _map2D[x][y].doPaint();
-                    }
-                }
-            }
-        }
-    }
-
-    public void accelerate() {
-        _accelerateX = _accelerateX + GameSettings.X_AXIS_ACCELERATION;
-        _accelerateY = _accelerateY + GameSettings.Y_AXIS_ACCELERATION;
-    }
-
-    public int getAlienCount() {
-        int result = 0;
-        for (int x = 1; x <= GameSettings.ALIEN_MESH_WIDTH; x++) {
-            for (int y = 1; y <= GameSettings.ALIEN_MESH_HEIGHT; y++) {
-                if (_map2D[x][y]!=null){
-                    if (_map2D[x][y].isVisible()) {
-                        result++;
-                    }
-                }
-            }
-        }
-        return result;
-    }
-
-    public void resetAcceleration() {
-        _accelerateX = 0;
-        _accelerateY = 0;
     }
 
     public void init() {
@@ -115,6 +75,92 @@ public class AlienOrchestrator implements Freeable {
                 _map2D[x][y].setTop((int) (y * 32)); // Initial height of the alien mesh
             }
         }
+    }
+
+    public void update() {
+        BigDecimal distance;
+        Point32 laserCanon;
+
+        _thresholdCount = _thresholdCount + 1;
+        if (_thresholdCount > 5) _thresholdCount = 0;
+
+        _updateFlipFlop();
+
+        for (int x = 1; x <= GameSettings.ALIEN_MESH_WIDTH; x++) {
+            for (int y = 1; y <= GameSettings.ALIEN_MESH_HEIGHT; y++) {
+                if (_map2D[x][y] != null) {
+                    if (_map2D[x][y].isVisible()) {
+                        if ((_thresholdCount % 6) == 0) {
+                            _map2D[x][y].updateMotion();
+                        }
+                    }
+                }
+            }
+        }
+
+        BigDecimal memDist = BigDecimal.valueOf(Double.MAX_VALUE);
+        Point32 memAlien = new Point32(0, 0);
+
+        if (_missileOrchestrator.getAlienMissileCount() < GameSettings.MAX_ALIEN_MISSILE_COUNT) {
+            if (_flipFlop) {
+                _map2D[Utilities.random(GameSettings.ALIEN_MESH_WIDTH) + 1][Utilities.random(GameSettings.ALIEN_MESH_HEIGHT) + 1].
+                        shootMissile();
+            } else {
+                laserCanon = _engine.getLaserCannonPosition();
+                for (int x = 1; x <= GameSettings.ALIEN_MESH_WIDTH; x++) {
+                    for (int y = 1; y <= GameSettings.ALIEN_MESH_HEIGHT; y++) {
+                        if (_map2D[x][y] != null) {
+                            if (_map2D[x][y].isVisible()) {
+                                distance = new BigDecimal(Math.floor(Math.sqrt(Math.pow((_map2D[x][y].getLeft() - laserCanon.getX()),2)+Math.pow((_map2D[x][y].
+                                        getTop() - laserCanon.getY()),2))));
+                                if (distance.compareTo(memDist)==-1) {
+                                    memDist = distance;
+                                    memAlien = new Point32(x, y);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (!memAlien.equals(new Point32(0, 0))) {
+                    _map2D[memAlien.getX()][memAlien.getY()].shootMissile();
+                }
+            }
+        }
+
+        detectAnomalies();
+    }
+
+    public void _updateFlipFlop() {
+        _flipFlop = !_flipFlop;
+    }
+
+    public void clear() {
+        // Do nothing
+    }
+
+    public void accelerate() {
+        _accelerateX = _accelerateX + GameSettings.X_AXIS_ACCELERATION;
+        _accelerateY = _accelerateY + GameSettings.Y_AXIS_ACCELERATION;
+    }
+
+    public int getAlienCount() {
+        int result = 0;
+        for (int x = 1; x <= GameSettings.ALIEN_MESH_WIDTH; x++) {
+            for (int y = 1; y <= GameSettings.ALIEN_MESH_HEIGHT; y++) {
+                if (_map2D[x][y]!=null){
+                    if (_map2D[x][y].isVisible()) {
+                        result++;
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    public void resetAcceleration() {
+        _accelerateX = 0;
+        _accelerateY = 0;
     }
 
     public void detectAnomalies() {
@@ -164,60 +210,6 @@ public class AlienOrchestrator implements Freeable {
         }
     }
 
-    public void update() {
-        BigDecimal distance;
-        Point32 laserCanon;
-
-        _thresholdCount = _thresholdCount + 1;
-        if (_thresholdCount > 5) _thresholdCount = 0;
-
-        _updateFlipFlop();
-
-        for (int x = 1; x <= GameSettings.ALIEN_MESH_WIDTH; x++) {
-            for (int y = 1; y <= GameSettings.ALIEN_MESH_HEIGHT; y++) {
-                if (_map2D[x][y] != null) {
-                    if (_map2D[x][y].isVisible()) {
-                        if ((_thresholdCount % 6) == 0) {
-                            _map2D[x][y].updateMotion();
-                        }
-                    }
-                }
-            }
-        }
-
-        BigDecimal memDist = BigDecimal.valueOf(Double.MAX_VALUE);
-        Point32 memAlien = new Point32(0, 0);
-
-        if (_missileOrchestrator.getAlienMissileCount() < GameSettings.MAX_ALIEN_MISSILE_COUNT) {
-            if (_flipFlop) {
-                _map2D[Utilities.random(GameSettings.ALIEN_MESH_WIDTH) + 1][Utilities.random(GameSettings.ALIEN_MESH_HEIGHT) + 1].
-                shootMissile();
-            } else {
-                laserCanon = _engine.getLaserCannonPosition();
-                for (int x = 1; x <= GameSettings.ALIEN_MESH_WIDTH; x++) {
-                    for (int y = 1; y <= GameSettings.ALIEN_MESH_HEIGHT; y++) {
-                        if (_map2D[x][y] != null) {
-                            if (_map2D[x][y].isVisible()) {
-                                distance = new BigDecimal(Math.floor(Math.sqrt(Math.pow((_map2D[x][y].getLeft() - laserCanon.getX()),2)+Math.pow((_map2D[x][y].
-                                getTop() - laserCanon.getY()),2))));
-                                if (distance.compareTo(memDist)==-1) {
-                                    memDist = distance;
-                                    memAlien = new Point32(x, y);
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (!memAlien.equals(new Point32(0, 0))) {
-                    _map2D[memAlien.getX()][memAlien.getY()].shootMissile();
-                }
-            }
-        }
-
-        detectAnomalies();
-    }
-
     public Alien getMap2D(int x, int y) {
         return _map2D[x][y];
     }
@@ -228,6 +220,18 @@ public class AlienOrchestrator implements Freeable {
 
     public void setExplosionOrchestrator(ExplosionOrchestrator explosionOrchestrator) {
         this._explosionOrchestrator = explosionOrchestrator;
+    }
+
+    public void doPaint() {
+        for (int x = 1; x <= GameSettings.ALIEN_MESH_WIDTH; x++){
+            for (int y = 1; y <= GameSettings.ALIEN_MESH_HEIGHT; y++){
+                if (_map2D[x][y]!=null){
+                    if (_map2D[x][y].isVisible()) {
+                        _map2D[x][y].doPaint();
+                    }
+                }
+            }
+        }
     }
 
 }

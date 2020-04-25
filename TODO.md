@@ -29,5 +29,4 @@
 
 ##### Refactoring
 * Refactor ALIEN iterator into a one dimensional array
-* Create an interface for Orchestratable objects
 * Create an interface for Drawable objects
