@@ -62,7 +62,7 @@ public class Bunker extends Model implements Paintable {
 
         int slotIndex = Math.abs(getLeft() - missileRect.getLeft());
         if (!isValidSlotIndex(slotIndex)) {
-            // todo: Why is slotIndex yielding 42 (Width of the bunker)??
+            // TODO: Why is slotIndex yielding 42 (Width of the bunker)??
             return result;
         }
 

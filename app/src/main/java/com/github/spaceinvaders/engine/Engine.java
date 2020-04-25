@@ -17,6 +17,7 @@ import com.github.spaceinvaders.R;
 import com.github.spaceinvaders.compatibility.Bitmap32;
 import com.github.spaceinvaders.compatibility.Canvas32;
 import com.github.spaceinvaders.compatibility.Point32;
+import com.github.spaceinvaders.compatibility.Rect32;
 import com.github.spaceinvaders.compatibility.Tuple;
 import com.github.spaceinvaders.enums.ExplosionType;
 import com.github.spaceinvaders.enums.GameState;
@@ -267,7 +268,7 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
                         missileOrchestrator.clear();
                         scoreKeeper.clear();
                         showMessage("   Game Over   ");
-                        //        _setState(gsStopped); // todo: Make this work
+                        //        _setState(gsStopped); // TODO: Make this work
                         notifyStopGame();
                         break;
                     case RUNNING:
@@ -704,8 +705,6 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
     }
 
     private void _checkCollisions_laser_missile_bunker() {
-        Explosion explosion;
-
         // Check laser-missile/bunker collision
         for (int i = missileOrchestrator.getPlayerObjects().size() - 1; i >= 0; i--) {
             for (int j = 1; j < bunkerOrchestrator.getMap().size(); j++) {
@@ -714,7 +713,7 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
                         bunkerOrchestrator.getMapItem(j).getBoundsRect()
                 )) {
                     if (!bunkerOrchestrator.getMapItem(j).isPassable(missileOrchestrator.getPlayerObjects().get(i).getBoundsRect(), MissileDirection.MOVING_UP)) {
-                        explosion = new Explosion(ExplosionType.GROUND, explosionOrchestrator);
+                        Explosion explosion = new Explosion(ExplosionType.GROUND, explosionOrchestrator);
                         explosion.setLeft(Utilities.spriteCenter(
                                 missileOrchestrator.getPlayerObjects().get(i).getWidth(),
                                 explosion.getWidth(),
