@@ -72,7 +72,7 @@ public class AlienOrchestrator implements BatchPaintable, Orchestratable, Freeab
                     }
                 }
                 _map2D[x][y].setLeft(x * 32);
-                _map2D[x][y].setTop((int) (y * 32)); // Initial height of the alien mesh
+                _map2D[x][y].setTop(y * 32); // Initial height of the alien mesh
             }
         }
     }
@@ -131,7 +131,7 @@ public class AlienOrchestrator implements BatchPaintable, Orchestratable, Freeab
         detectAnomalies();
     }
 
-    public void _updateFlipFlop() {
+    private void _updateFlipFlop() {
         _flipFlop = !_flipFlop;
     }
 
@@ -158,12 +158,12 @@ public class AlienOrchestrator implements BatchPaintable, Orchestratable, Freeab
         return result;
     }
 
-    public void resetAcceleration() {
+    private void resetAcceleration() {
         _accelerateX = 0;
         _accelerateY = 0;
     }
 
-    public void detectAnomalies() {
+    private void detectAnomalies() {
         int leftYes = 0;
         int rightYes = 0;
 

@@ -128,7 +128,7 @@ public class Utilities {
     }
 
     public static String stringOfChar(char c, int length) {
-        StringBuffer outputBuffer = new StringBuffer(length);
+        StringBuilder outputBuffer = new StringBuilder(length);
         for (int i = 0; i < length; i++) {
             outputBuffer.append(c);
         }
@@ -141,17 +141,12 @@ public class Utilities {
         rand.setSeed(new Date().getTime());
     }
 
-    private static int generateRandomInteger(int min, int max) {
-        int randomNum = rand.nextInt((max - min) + 1) + min;
-        return randomNum;
-    }
-
     public static int random(int max) {
-        return generateRandomInteger(0, max - 1);
+        return rand.nextInt(max);
     }
 
     public static int floorDiv(int x, int y) {
-        return (int) (x / y);
+        return x / y;
     }
 
     public static int setAlpha(@ColorInt int col, int alpha) {

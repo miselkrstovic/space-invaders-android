@@ -1,5 +1,18 @@
 <resources>
   <string name="app_name">Space Invaders</string>
   <string name="place_holder_initial_score">0000</string>
-    <string name="paused">Paused</string>
+  <string name="paused">Paused</string>
+  <string name="score_player_one">Score Player One</string>
+  <string name="score_player_two">Score Player Two</string>
+  <string name="highest_score">Highest Score</string>
+  <string name="hi_score">HI-SCORE</string>
+  <string name="score_1">SCORE(1)</string>
+  <string name="score_2">SCORE(2)</string>
+  <string name="digit_5">5</string>
+  <string name="score_advance_table">*SCORE ADVANCE TABLE*</string>
+  <string name="press_fire_to_start">PRESS FIRE TO START</string>
+  <string name="alien_alpha_10_points">= 10 POINTS</string>
+  <string name="alien_beta_20_points">= 20 POINTS</string>
+  <string name="alien_gamma_30_points">= 30 POINTS</string>
+  <string name="mystery_ship_unknown_points">= ? MYSTERY</string>
 </resources>

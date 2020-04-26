@@ -1,7 +1,5 @@
 package com.github.spaceinvaders.models;
 
-import android.graphics.Color;
-
 import com.github.spaceinvaders.compatibility.Bitmap32;
 import com.github.spaceinvaders.compatibility.Rect32;
 import com.github.spaceinvaders.enums.MissileDirection;
@@ -16,7 +14,7 @@ public class Bunker extends Model implements Paintable {
     private static final int BUNKER_HEIGHT = 32;
 
     private Bitmap32 _picture;
-    private boolean _bitmap[][];
+    private boolean[][] _bitmap;
 
     private BunkerOrchestrator _bunkerOrchestrator;
     private ExplosionOrchestrator _explosionOrchestrator;
@@ -102,19 +100,23 @@ public class Bunker extends Model implements Paintable {
             }
         } else {
             for (i = getHeight() - 1; i >= 0; i--) {
-                if (!_bitmap[slotIndex][i]){
-                    result = false;
+                try {
+                    if (!_bitmap[slotIndex][i]) {
+                        result = false;
 
-                    for (j = Math.max(i, getHeight() - 1); j >= i - missileHeight; j--) {
-                        // LaserCannon missile explosion is MISSILE_WIDTH x4
-                        if (isValidSlotIndex(slotIndex - 2)) _bitmap[slotIndex - 2][j] = true;
-                        if (isValidSlotIndex(slotIndex - 1)) _bitmap[slotIndex - 1][j] = true;
-                        if (isValidSlotIndex(slotIndex)) _bitmap[slotIndex][j] = true;
-                        if (isValidSlotIndex(slotIndex + 1)) _bitmap[slotIndex + 1][j] = true;
-                        if (isValidSlotIndex(slotIndex + 2)) _bitmap[slotIndex + 2][j] = true;
-                        if (isValidSlotIndex(slotIndex + 3)) _bitmap[slotIndex + 3][j] = true;
+                        for (j = Math.max(i, getHeight() - 1); j >= i - missileHeight; j--) {
+                            // LaserCannon missile explosion is MISSILE_WIDTH x4
+                            if (isValidSlotIndex(slotIndex - 2)) _bitmap[slotIndex - 2][j] = true;
+                            if (isValidSlotIndex(slotIndex - 1)) _bitmap[slotIndex - 1][j] = true;
+                            if (isValidSlotIndex(slotIndex)) _bitmap[slotIndex][j] = true;
+                            if (isValidSlotIndex(slotIndex + 1)) _bitmap[slotIndex + 1][j] = true;
+                            if (isValidSlotIndex(slotIndex + 2)) _bitmap[slotIndex + 2][j] = true;
+                            if (isValidSlotIndex(slotIndex + 3)) _bitmap[slotIndex + 3][j] = true;
+                        }
+                        break;
                     }
-                    break;
+                } catch (Exception e) {
+                    // TODO: Remove this try/catch
                 }
             }
 

@@ -23,7 +23,7 @@
             android:layout_height="32dp"
             android:layout_alignParentTop="true"
             android:gravity="center"
-            android:text="*SCORE ADVANCE TABLE*"
+            android:text="@string/score_advance_table"
             android:textAppearance="@style/TextStyle" />
 
         <GridLayout
@@ -45,7 +45,7 @@
                 android:id="@+id/label2"
                 android:layout_height="32dp"
                 android:gravity="center"
-                android:text="= ? MYSTERY"
+                android:text="@string/mystery_ship_unknown_points"
                 android:textAppearance="@style/TextStyle" />
 
             <ImageView
@@ -59,7 +59,7 @@
                 android:id="@+id/label3"
                 android:layout_height="32dp"
                 android:gravity="center"
-                android:text="= 30 POINTS"
+                android:text="@string/alien_gamma_30_points"
                 android:textAppearance="@style/TextStyle" />
 
             <ImageView
@@ -73,7 +73,7 @@
                 android:id="@+id/label4"
                 android:layout_height="32dp"
                 android:gravity="center"
-                android:text="= 20 POINTS"
+                android:text="@string/alien_beta_20_points"
                 android:textAppearance="@style/TextStyle" />
 
             <ImageView
@@ -87,7 +87,7 @@
                 android:id="@+id/label5"
                 android:layout_height="32dp"
                 android:gravity="center"
-                android:text="= 10 POINTS"
+                android:text="@string/alien_alpha_10_points"
                 android:textAppearance="@style/TextStyle" />
 
         </GridLayout>
@@ -98,7 +98,7 @@
             android:layout_height="32dp"
             android:layout_alignParentBottom="true"
             android:gravity="center"
-            android:text="PRESS FIRE TO START"
+            android:text="@string/press_fire_to_start"
             android:textAppearance="@style/TextStyle" />
 
     </RelativeLayout>

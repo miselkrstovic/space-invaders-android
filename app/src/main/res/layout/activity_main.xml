@@ -33,9 +33,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:contentDescription="Highest Score"
+        android:contentDescription="@string/highest_score"
         android:gravity="top|center_horizontal"
-        android:text="HI-SCORE"
+        android:text="@string/hi_score"
         android:textAppearance="@style/TextStyle" />
 
     <TextView
@@ -43,20 +43,20 @@
         android:layout_width="wrap_content"
         android:layout_height="32dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:text="SCORE(1)"
+        android:layout_alignParentStart="true"
+        android:text="@string/score_1"
         android:textAppearance="@style/TextStyle"
-        android:contentDescription="Score Player One" />
+        android:contentDescription="@string/score_player_one" />
 
     <TextView
         android:id="@+id/lblDummy3"
         android:layout_width="wrap_content"
         android:layout_height="32dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:text="SCORE(2)"
+        android:layout_alignParentEnd="true"
+        android:text="@string/score_2"
         android:textAppearance="@style/TextStyle"
-        android:contentDescription="Score Player Two"/>
+        android:contentDescription="@string/score_player_two"/>
 
     <TextView
         android:id="@+id/lblHighScore"
@@ -77,7 +77,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:textAppearance="@style/TextStyle"
         android:textSize="32sp"
         android:text="@string/place_holder_initial_score" />
@@ -87,7 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:textAppearance="@style/TextStyle"
         android:textSize="32sp"
         android:text="@string/place_holder_initial_score" />

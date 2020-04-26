@@ -11,7 +11,7 @@ public class ExplosionOrchestrator implements BatchPaintable, Orchestratable, Fr
     private List<Explosion> _explosionObjectList;
 
     public ExplosionOrchestrator() {
-        _explosionObjectList = new ArrayList<Explosion>();
+        _explosionObjectList = new ArrayList<>();
     }
 
     public void free() {

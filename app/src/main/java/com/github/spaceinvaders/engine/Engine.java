@@ -6,18 +6,19 @@ import android.graphics.PixelFormat;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
-import androidx.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import com.github.spaceinvaders.GameSettings;
 import com.github.spaceinvaders.R;
 import com.github.spaceinvaders.compatibility.Bitmap32;
 import com.github.spaceinvaders.compatibility.Canvas32;
 import com.github.spaceinvaders.compatibility.Point32;
-import com.github.spaceinvaders.compatibility.Rect32;
 import com.github.spaceinvaders.compatibility.Tuple;
 import com.github.spaceinvaders.enums.ExplosionType;
 import com.github.spaceinvaders.enums.GameState;
@@ -57,7 +58,7 @@ import static com.github.spaceinvaders.enums.GameState.STOPPED;
 
 public class Engine extends SurfaceView implements HoleListener, ScoreKeeperListener {
 
-    public final int ALIEN_CLEARANCE = 3;
+    private final int ALIEN_CLEARANCE = 3;
 
     private GameState _state = STOPPED;
     private int _playerLives;
@@ -73,13 +74,13 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
 
     private LaserCannon _laserCannon;
     private MysteryShip _mysteryShip;
-    public Ground _ground;
-    public ScoreKeeper scoreKeeper;
+    private Ground _ground;
+    private ScoreKeeper scoreKeeper;
 
-    public AlienOrchestrator alienOrchestrator;
-    public MissileOrchestrator missileOrchestrator;
-    public ExplosionOrchestrator explosionOrchestrator;
-    public BunkerOrchestrator bunkerOrchestrator;
+    private AlienOrchestrator alienOrchestrator;
+    private MissileOrchestrator missileOrchestrator;
+    private ExplosionOrchestrator explosionOrchestrator;
+    private BunkerOrchestrator bunkerOrchestrator;
 
     private int sleepInterval = 33; // 1 second div 30 fps
 
@@ -104,7 +105,7 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
         setup();
     }
 
-    public void setup() {
+    private void setup() {
         // Make surface view is transparent
         setZOrderOnTop(true); // necessary
         SurfaceHolder sfhTrackHolder = getHolder();
@@ -182,6 +183,10 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
         _laserCannon.free();
     }
 
+    public ScoreKeeper getScoreKeeper() {
+        return scoreKeeper;
+    }
+
     class PaintJob extends TimerTask {
         public void run() {
             mHandler.obtainMessage(1).sendToTarget();
@@ -189,7 +194,7 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
     }
 
     private final Handler mHandler = new Handler() {
-        public void handleMessage(Message msg) {
+        public void handleMessage(@NonNull Message msg) {
             invalidate();
         }
     };
@@ -198,7 +203,7 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
         return _playerLives;
     }
 
-    public void _shootMissile() {
+    private void _shootMissile() {
         Missile missile;
 
         if (missileOrchestrator.getPlayerMissileCount() < GameSettings.MAX_PLAYER_MISSILE_COUNT) {
@@ -210,7 +215,7 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
         }
     }
 
-    public void _updateFlipFlop() {
+    private void _updateFlipFlop() {
         _flipFlopCounter = _flipFlopCounter + 1;
         switch (_flipFlopCounter) {
             case 0:
@@ -344,7 +349,7 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
         }
     }
 
-    public void _processKey() {
+    private void _processKey() {
         if (_keyQueue == null || _keyQueue.size() == 0) return;
 
         Tuple<TranslatedKey, Float> tuple = _keyQueue.poll();
@@ -510,7 +515,7 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
         }
     }
 
-    public void _checkCollisions() {
+    private void _checkCollisions() {
         _checkCollisions_missile_alien();
         _checkCollisions_missile_cannon();
         _checkCollisions_missile_missile();
@@ -734,11 +739,11 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
 
     //------------------------------------------------------------------------------------------------
 
-    public void startGame() {
+    private void startGame() {
         startGame(true);
     }
 
-    public void startGame(boolean init) {
+    private void startGame(boolean init) {
         if (init) {
             alienOrchestrator.init();
             bunkerOrchestrator.init();
@@ -754,7 +759,7 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
         notifyStopGame();
     }
 
-    public void stopGame() {
+    private void stopGame() {
         _setState(STOPPED);
     }
 

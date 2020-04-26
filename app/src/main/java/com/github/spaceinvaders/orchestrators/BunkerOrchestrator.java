@@ -1,7 +1,5 @@
 package com.github.spaceinvaders.orchestrators;
 
-import android.graphics.Color;
-
 import com.github.spaceinvaders.engine.Freeable;
 import com.github.spaceinvaders.models.Bunker;
 import com.github.spaceinvaders.models.Model;

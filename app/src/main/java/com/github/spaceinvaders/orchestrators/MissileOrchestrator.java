@@ -15,8 +15,8 @@ public class MissileOrchestrator implements BatchPaintable, Orchestratable, Free
     private HoleListener listener;
 
     public MissileOrchestrator(HoleListener listener) {
-        _alienObjectList = new ArrayList<Missile>();
-        _playerObjectList = new ArrayList<Missile>();
+        _alienObjectList = new ArrayList<>();
+        _playerObjectList = new ArrayList<>();
 
         this.listener = listener;
     }

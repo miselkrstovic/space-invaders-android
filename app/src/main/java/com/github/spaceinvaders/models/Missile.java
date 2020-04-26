@@ -1,8 +1,5 @@
 package com.github.spaceinvaders.models;
 
-import android.graphics.Color;
-import android.graphics.Paint;
-
 import com.github.spaceinvaders.GameSettings;
 import com.github.spaceinvaders.compatibility.Rect32;
 import com.github.spaceinvaders.enums.MissileType;

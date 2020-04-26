@@ -3,6 +3,7 @@ package com.github.spaceinvaders;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -101,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements EngineListener, S
     }
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
 
         engine.processEnvironmentChange(
@@ -136,9 +137,9 @@ public class MainActivity extends AppCompatActivity implements EngineListener, S
 
     @Override
     public void onUpdateScores(ScoreKeeper sender) {
-        VpLEDLabel1.setText(engine.scoreKeeper.formatScore(engine.scoreKeeper.getPlayerScore1()));
-        VpLEDLabel2.setText(engine.scoreKeeper.formatScore(engine.scoreKeeper.getPlayerScore2()));
-        lblHighScore.setText(engine.scoreKeeper.formatScore(engine.scoreKeeper.getHighScore()));
+        VpLEDLabel1.setText(engine.getScoreKeeper().formatScore(engine.getScoreKeeper().getPlayerScore1()));
+        VpLEDLabel2.setText(engine.getScoreKeeper().formatScore(engine.getScoreKeeper().getPlayerScore2()));
+        lblHighScore.setText(engine.getScoreKeeper().formatScore(engine.getScoreKeeper().getHighScore()));
     }
 
     @Override

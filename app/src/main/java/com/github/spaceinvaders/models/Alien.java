@@ -84,7 +84,7 @@ public class Alien extends Model implements Paintable {
     public void shootMissile() {
         if (_visible) {
             Missile missile = new Missile(_missileOrchestrator, _explosionOrchestrator);
-            missile.setLeft(getLeft() + (int) (getWidth() / 2));
+            missile.setLeft(getLeft() + getWidth() / 2);
             missile.setTop(getTop() + getHeight());
             missile.setMissileType(ALIEN);
 

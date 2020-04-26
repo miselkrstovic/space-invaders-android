@@ -30,7 +30,7 @@ public class Canvas32 extends Canvas {
 
     @Override
     public void drawBitmap(@NonNull Bitmap bitmap, float left, float top, @Nullable Paint paint) {
-        drawBitmap(bitmap, left, top, paint);
+        super.drawBitmap(bitmap, left, top, paint);
     }
 
     @Override
