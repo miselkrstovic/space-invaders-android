@@ -44,8 +44,8 @@ public class BunkerOrchestrator implements Orchestratable, Freeable {
         for (int x = 0; x < _map.size(); x++) {
             if (_map.get(x) != null) {
                 Bunker bunker = _map.get(x); // We are reusing the previous bunker object
-                bunker.getPicture().setPenColor(Utilities.setAlpha(Model.PIXIL_COLOR_ON, 0xFF));
-                bunker.getPicture().setFillRect(0, 0, _map.get(x).getWidth(), _map.get(x).getHeight(), Utilities.setAlpha(Model.PIXIL_COLOR_ON, 0xFF));
+                bunker.getPicture().setPenColor(Utilities.setAlpha(Model.PIXEL_COLOR_ON, 0xFF));
+                bunker.getPicture().setFillRect(0, 0, _map.get(x).getWidth(), _map.get(x).getHeight(), Utilities.setAlpha(Model.PIXEL_COLOR_ON, 0xFF));
                 _map.get(x).reset();
             } else {
                 Bunker bunker = new Bunker(this, _explosionOrchestrator);

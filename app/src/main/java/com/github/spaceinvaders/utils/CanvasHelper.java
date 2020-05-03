@@ -96,7 +96,7 @@ public class CanvasHelper {
 
     public static Paint createPaint() {
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint.setColor(Model.PIXIL_COLOR_ON);
+        paint.setColor(Model.PIXEL_COLOR_ON);
         paint.setStyle(Paint.Style.FILL);
         return paint;
     }

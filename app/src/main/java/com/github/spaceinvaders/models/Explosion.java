@@ -47,7 +47,6 @@ public class Explosion extends Model implements Paintable {
     }
 
     public void paint() {
-        _picture.setDrawMode(Bitmap32.DrawMode.BLEND);
         CanvasHelper.drawBitmap(_picture.getBitmap(), getLeft(), getTop());
     }
 

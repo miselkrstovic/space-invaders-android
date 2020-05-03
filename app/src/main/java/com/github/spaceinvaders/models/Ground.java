@@ -40,11 +40,11 @@ public class Ground extends Model implements Paintable, Freeable {
         if (!_initialized) lazyInit();
 
         Paint paint = CanvasHelper.createPaint();
-        paint.setColor(PIXIL_COLOR_ON);
+        paint.setColor(PIXEL_COLOR_ON);
         CanvasHelper.drawLine(getLeft(), getTop() + 1, _bitmap.size(), getTop() + 1, paint);
         CanvasHelper.drawLine(getLeft(), getTop() + 2, _bitmap.size(), getTop() + 2, paint);
 
-        paint.setColor(PIXIL_COLOR_OFF);
+        paint.setColor(PIXEL_COLOR_OFF);
         for (int i = 0; i < _bitmap.size(); i++) {
             if (_bitmap.get(i)) {
                 CanvasHelper.drawRect(

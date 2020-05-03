@@ -204,10 +204,8 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
     }
 
     private void _shootMissile() {
-        Missile missile;
-
         if (missileOrchestrator.getPlayerMissileCount() < GameSettings.MAX_PLAYER_MISSILE_COUNT) {
-            missile = new Missile(missileOrchestrator, explosionOrchestrator);
+            Missile missile = new Missile(missileOrchestrator, explosionOrchestrator);
             missile.setLeft(_laserCannon.getLeft() + _laserCannon.getWidth() / 2);
             missile.setTop(_laserCannon.getTop());
             missileOrchestrator.addMissile(missile);
@@ -525,8 +523,6 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
     }
 
     private void _checkCollisions_missile_alien() {
-        Explosion explosion;
-
         // Check missile/alien collision
         for (int x = 1; x <= GameSettings.ALIEN_MESH_WIDTH; x++) {
             for (int y = 1; y <= GameSettings.ALIEN_MESH_HEIGHT; y++) {
@@ -559,7 +555,7 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
                                     }
                                     // Obliterate alien
                                     alienOrchestrator.getMap2D(x, y).die();
-                                    explosion = new Explosion(ExplosionType.ALIEN, explosionOrchestrator);
+                                    Explosion explosion = new Explosion(ExplosionType.ALIEN, explosionOrchestrator);
                                     explosion.setLeft(Utilities.spriteCenter(
                                             alienOrchestrator.getMap2D(x, y).getWidth(),
                                             explosion.getWidth(),
@@ -584,8 +580,6 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
     }
 
     private void _checkCollisions_missile_cannon() {
-        Explosion explosion;
-
         // Check missile/cannon collision
         if (_laserCannon.isShowing()) {
             for (int i = 0; i < missileOrchestrator.getAlienObjects().size(); i++) {
@@ -601,7 +595,7 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
                     ))) {
                         _laserCannon.die();
 
-                        explosion = new Explosion(ExplosionType.PLAYER, explosionOrchestrator);
+                        Explosion explosion = new Explosion(ExplosionType.PLAYER, explosionOrchestrator);
                         explosion.setLeft(Utilities.spriteCenter(
                                 _laserCannon.getWidth(),
                                 explosion.getWidth(),
@@ -621,8 +615,6 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
     }
 
     private void _checkCollisions_missile_missile() {
-        Explosion explosion;
-
         // Check missile/missile collision
         for (int i = missileOrchestrator.getAlienObjects().size() - 1; i >= 0; i--) {
             for (int j = missileOrchestrator.getPlayerObjects().size() - 1; j >= 0; j--) {
@@ -630,7 +622,7 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
                         missileOrchestrator.getAlienObjects().get(i).getBoundsRect(),
                         missileOrchestrator.getPlayerObjects().get(j).getBoundsRect()
                 )) {
-                    explosion = new Explosion(ExplosionType.MISSILE, explosionOrchestrator);
+                    Explosion explosion = new Explosion(ExplosionType.MISSILE, explosionOrchestrator);
                     explosion.setLeft(Utilities.spriteCenter(
                             missileOrchestrator.getAlienObjects().get(i).getWidth(),
                             explosion.getWidth(),
@@ -648,8 +640,6 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
     }
 
     private void _checkCollisions_missile_mysteryShip() {
-        Explosion explosion;
-
         // Check missile/mystery-ship collision
         if (_mysteryShip.isShowing()) {
             for (int i = missileOrchestrator.getPlayerObjects().size() - 1; i >= 0; i--) {
@@ -661,7 +651,7 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
                     scoreKeeper.setPlayerScore1(scoreKeeper.getPlayerScore1() + GameSettings.ALIEN_SCORE_MYSTERY_SHIP);
 
                     // Obliterate mystery ship
-                    explosion = new Explosion(ExplosionType.MYSTERY_SHIP, explosionOrchestrator);
+                    Explosion explosion = new Explosion(ExplosionType.MYSTERY_SHIP, explosionOrchestrator);
                     explosion.setLeft(Utilities.spriteCenter(
                             _mysteryShip.getWidth(),
                             explosion.getWidth(),
@@ -678,8 +668,6 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
     }
 
     private void _checkCollisions_missile_bunker() {
-        Explosion explosion;
-
         // Check missile/bunker collision
         for (int i = 0; i < missileOrchestrator.getAlienObjects().size(); i++) {
             if (missileOrchestrator.getAlienObjects().get(i).getMissileType() == MissileType.ALIEN) {
@@ -689,7 +677,7 @@ public class Engine extends SurfaceView implements HoleListener, ScoreKeeperList
                     ))) {
 
                         if (!bunkerOrchestrator.getMapItem(j).isPassable(missileOrchestrator.getAlienObjects().get(i).getBoundsRect(), MissileDirection.MOVING_DOWN)) {
-                            explosion = new Explosion(ExplosionType.GROUND, explosionOrchestrator);
+                            Explosion explosion = new Explosion(ExplosionType.GROUND, explosionOrchestrator);
                             explosion.setLeft(Utilities.spriteCenter(
                                     missileOrchestrator.getAlienObjects().get(i).getWidth(),
                                     explosion.getWidth(),

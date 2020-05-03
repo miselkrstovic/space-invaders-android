@@ -1,11 +1,13 @@
 package com.github.spaceinvaders.models;
 
+import android.graphics.Color;
+
 import com.github.spaceinvaders.compatibility.Rect32;
 
 public class Model extends Rect32 {
 
-    public static int PIXIL_COLOR_ON = 0xffffffff;
-    public static int PIXIL_COLOR_OFF = 0x00000000;
+    public static int PIXEL_COLOR_ON = Color.WHITE;
+    public static int PIXEL_COLOR_OFF = Color.TRANSPARENT;
 
     public Model() {
     }

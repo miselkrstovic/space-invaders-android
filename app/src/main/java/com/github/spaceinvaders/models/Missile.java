@@ -32,8 +32,8 @@ public class Missile extends Model implements Paintable {
         setWidth(MISSILE_WIDTH);
         setHeight(MISSILE_HEIGHT);
 
-        setBrushColor(PIXIL_COLOR_ON);
-        setPenColor(PIXIL_COLOR_ON);
+        setBrushColor(PIXEL_COLOR_ON);
+        setPenColor(PIXEL_COLOR_ON);
 
         _missileOrchestrator = missileOrchestrator;
         setExplosionOrchestrator(explosionOrchestrator);
