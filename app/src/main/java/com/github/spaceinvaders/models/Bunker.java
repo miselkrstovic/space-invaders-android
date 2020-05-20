@@ -44,7 +44,9 @@ public class Bunker extends Model implements Paintable {
     }
 
     public void paint() {
-        CanvasHelper.drawBitmap(_picture.getBitmap(), getLeft(), getTop());
+        CanvasHelper.drawRect(getBoundsRect(), CanvasHelper.createPaint());
+
+// TODO:        CanvasHelper.drawBitmap(_picture.getBitmap(), getLeft(), getTop());
     }
 
     public boolean isPassable(Rect32 missileRect, MissileDirection missileDirection) {
