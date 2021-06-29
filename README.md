@@ -31,6 +31,9 @@ There are still a lot of missing features, and bugs to be squashed. For the curi
 
 Please take a look at the [contributing](CONTRIBUTING.md) guidelines if you're interested in helping!
 
+## Attribution
+This work, [Space Invaders for Android](https://github.com/miselkrstovic/space-invaders-android), is a derivative of [Space Invaders](https://en.wikipedia.org/wiki/Space_Invaders) by [Tomohiro Nishikado](https://en.wikipedia.org/wiki/Tomohiro_Nishikado) from [Taito](https://en.wikipedia.org/wiki/Taito).
+
 ## License
 
 Space Invaders for Android is released under the MIT license.
